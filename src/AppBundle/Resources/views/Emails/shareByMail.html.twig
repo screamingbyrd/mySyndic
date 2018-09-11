@@ -146,7 +146,8 @@
         text-align: center;
         border-radius: 4px;
         display: inline-block;
-        padding: 3px 10px;
+        padding: 0 7px;
+        font-size: 13px;
     }
     .item-contract-freelance{
         background: orange;
@@ -155,7 +156,8 @@
         text-align: center;
         border-radius: 4px;
         display: inline-block;
-        padding: 3px 10px;
+        padding: 0 7px;
+        font-size: 13px;
     }
     .item-contract-parttime{
         background: green;
@@ -164,7 +166,8 @@
         text-align: center;
         border-radius: 4px;
         display: inline-block;
-        padding: 3px 10px;
+        padding: 0 7px;
+        font-size: 13px;
     }
     .item-contract-fulltime{
         background: blue;
@@ -173,7 +176,8 @@
         text-align: center;
         border-radius: 4px;
         display: inline-block;
-        padding: 3px 10px;
+        padding: 0 7px;
+        font-size: 13px;
     }
     .item-contract-internship{
         background: brown;
@@ -182,7 +186,8 @@
         text-align: center;
         border-radius: 4px;
         display: inline-block;
-        padding: 3px 10px;
+        padding: 0 7px;
+        font-size: 13px;
     }
     .logo-facebook{
         width: 30px;
@@ -223,13 +228,16 @@
                                     <div class="offer-element-name">{{ offer.employer.name }}</div>
                                     <div class="offer-element-title">{{ offer.title |truncate(20, true)}}</div>
                                     <div><span class="other-element">{{ offer.location }}</span></div>
-                                    <div class="offer-element-other"><span class="other-element offer-item-contract item-contract-{{ offer.contractType.name }}">{{ offer.contractType.name | trans }}</span><span class="other-element">{{ offer.startDate|time_diff }}</span></div>
+                                    <div class="offer-element-other"><span class="other-element offer-item-contract item-contract-{{ offer.contractType.name }}">{{ offer.contractType.name | trans }}</span></div>
                                 </div>
                             </div>
                         </a>
                     </li>
             </ul>
 
+            <div class="other-footer">
+                <div><a href="{{ path('show_offer', {'id': offer.id, 'url':offer.offerUrl}) }}">{{ 'email.share.seeOffer'|trans }}</a></div>
+            </div>
 
         </div>
 

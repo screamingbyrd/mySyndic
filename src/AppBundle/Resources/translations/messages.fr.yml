@@ -450,7 +450,8 @@ email:
     consult: Consultez notre %link_start%politique de confidentialité%link_end% pour connaître vos droits.
   share:
     title: Un ami a partagé cette offre avec vous
-    shared: %sendFrom% à partagé cett'e offre
+    shared: %sendFrom% à partagé cette offre avec vous
+    seeOffer: Voir cette offre
 
 contact:
   form: Formulaire de contact

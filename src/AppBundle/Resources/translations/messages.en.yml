@@ -459,7 +459,8 @@ email:
     consult: Click here %link_start%politique de confidentialité%link_end% to consult your rights.
   share:
     title: A friend shared this with you
-    shared: %sendFrom% shared this offer
+    shared: %sendFrom% shared this offer with you
+    seeOffer: See this offer
 
 contact:
   form: Contact form
