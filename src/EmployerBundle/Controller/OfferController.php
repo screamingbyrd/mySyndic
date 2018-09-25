@@ -349,51 +349,7 @@ class OfferController extends Controller
         $em->merge($offer);
         $em->flush();
 
-        //workarround to ssl certificat pb curl error 60
-
-        $config = [
-            'verify' => false,
-        ];
-
-        $adapter = GuzzleAdapter::createWithConfig($config);
-
-        // GeoCoder API
-        $geocoder = new GeocoderService($adapter, new GuzzleMessageFactory());
-
-        //try to match string location to get Object with lat long info
-        if($offer->getLocation()){
-            $request = new GeocoderAddressRequest($offer->getLocation());
-        }else{
-            $request = new GeocoderAddressRequest('228 Route d\'Esch, Luxembourg');
-        }
-
-        $response = $geocoder->geocode($request);
-
-
-        $status = $response->getStatus();
-
-        $map = null;
-
-        if($status == 'OK'){
-            $map = new Map();
-            foreach ($response->getResults() as $result) {
-
-                $coord = $result->getGeometry()->getLocation();
-                continue;
-
-            }
-
-            if(isset($coord)) {
-                $marker = new Marker($coord);
-                $marker->setVariable('marker');
-                $map->setCenter($coord);
-                $map->getOverlayManager()->addMarker($marker);
-            }
-
-            $map->setStylesheetOption('width', 1100);
-            $map->setStylesheetOption('min-height', 1100);
-            $map->setMapOption('zoom', 10);
-        }
+        $location = $this->get('app.find_latlong')->geocode($offer->getLocation());
 
         $seoPage = $this->container->get('sonata.seo.page');
 
@@ -408,10 +364,9 @@ class OfferController extends Controller
             'offer' => $offer,
             'similarOfferArray' => $similarOfferArray['offers'],
             'tags' => $similarOfferArray['tags'],
-            'map' => $map,
-            'status' => $status,
             'cvTitle' => $titleCV,
-            'coverLetterTitle' => $titleCoverLetter
+            'coverLetterTitle' => $titleCoverLetter,
+            'location' => $location
         ));
     }
 

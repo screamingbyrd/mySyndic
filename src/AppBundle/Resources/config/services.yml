@@ -23,6 +23,8 @@ services:
         class: AppBundle\Service\Namer
         tags:
           - { name: namer }
+  app.find_latlong:
+      class: AppBundle\Service\FindLatLong
 
 
 
