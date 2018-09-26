@@ -26,7 +26,7 @@ class EmployerRepository extends \Doctrine\ORM\EntityRepository
             ->createQuery(
                 'select count(distinct em.id) as total
                     from AppBundle:employer em
-                    where em.creationDate <= :endDate'
+                    where em.creationDate <= :endDate and em.phone is not null'
             )->setParameter('endDate',$endDate)->execute();
     }
 }
