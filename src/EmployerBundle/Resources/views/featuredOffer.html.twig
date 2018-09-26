@@ -143,7 +143,7 @@
                 </select>
                 <div class="modal-footer">
                     <input hidden id="hide-href">
-                    <a type="button" class="btn btn-default" id="modal-btn-yes-reserve-featured-offer">{{ 'yes'|trans }}</a>
+                    <a type="button" class="btn btn-default isDisabled" id="modal-btn-yes-reserve-featured-offer">{{ 'yes'|trans }}</a>
                     <button type="button" class="btn btn-primary modal-btn-no">{{ 'no'|trans }}</button>
                 </div>
             </div>
@@ -183,7 +183,20 @@
                     break;
             }
         });
+        $("#featured-offer-id").change(function() {
+            let year = $(this).val();
+            if($(this).val() != "0"){
+                $('#modal-btn-yes-reserve-featured-offer').removeClass('isDisabled');
+            }else {
+                $('#modal-btn-yes-reserve-featured-offer').addClass('isDisabled');
+            }
+        });
     </script>
+    <style>
+    .isDisabled {
+        display: none;
+    }
+</style>
 
 
 {% endblock %}
