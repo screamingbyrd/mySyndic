@@ -22,11 +22,16 @@ remove_admin:
         fr: "/supprimer-admin"
     defaults: { _controller: AdminBundle:Admin:removeFromAdmin }
 
-promote_admin:
+add_admin:
     locales:
-        en: "/promote-to--admin"
+        en: "/add-admin"
         fr: "/ajouter-admin"
-    defaults: { _controller: AdminBundle:Admin:promoteToAdmin }
+    defaults: { _controller: AdminBundle:Admin:addAdmin }
+edit_admin:
+    locales:
+        en: "/edit-admin"
+        fr: "/editer-admin"
+    defaults: { _controller: AdminBundle:Admin:editAdmin }
 
 list_offer_admin:
     locales:

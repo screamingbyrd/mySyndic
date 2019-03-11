@@ -11,7 +11,18 @@
     <div class="container">
         <h2>{{ 'admin.adminList.addAdmin' | trans }}</h2>
         <div class="shadow-box">
+            <form enctype="multipart/form-data" method="post" action="{{ path('add_admin') }}" id="search-offer-homepage">
+                Mail: <input type="text" title="message" name="mail" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Username: <input type="text" title="message" name="username" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Password: <input type="text" title="message" name="password" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Role:
+                <select class="form-control" name="role"  style="width: 200px !important; display: inline !important;">
+                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                    <option value="ROLE_SUPER_ADMIN">ROLE_SUPER_ADMIN</option>
+                </select>
 
+                <input type="submit" class="btn btn-primary" value="Ajouter">
+            </form>
         </div>
 
 
@@ -36,9 +47,7 @@
                     </td>
                     <td class="candidate-mail">{{ admin.email }}</td>
                     <td>
-                        {#<a href="{{ path('edit_candidate', { 'id': candidate.id }) }}">#}
-                            {#<button type="button" class="btn btn-primary">Editer</button>#}
-                        {#</a>#}
+                        <a href="{{ path('edit_admin', {'mail':admin.email}) }}" class="btn btn-primary">Editer</a>
                         <button class="modal-open btn btn-danger" data-href="{{ path('remove_admin', { 'id': admin.id }) }}">
                             {{ 'delete' | trans }}
                         </button>

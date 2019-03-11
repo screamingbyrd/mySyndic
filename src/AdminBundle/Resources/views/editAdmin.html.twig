@@ -1,0 +1,41 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <div class="container">
+        <h4>Editer {{ user.email }}</h4>
+        <div class="shadow-box" id="form-add-employee" style="margin-top: 20px">
+            <form enctype="multipart/form-data" method="post" action="{{ path('edit_admin') }}" id="search-offer-homepage">
+                <input type="hidden" name="mail" value="{{ user.email }}">
+                Mail: <input type="text" title="message" value="{{ user.email }}" name="newMail" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Username: <input type="text" title="message" value="{{ user.username }}" name="username" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Nouveaux Password: <input type="text" title="message" name="password" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Role:
+                <select class="form-control" name="role"  style="width: 200px !important; display: inline !important;">
+                    <option value="ROLE_MANAGER" {% if "ROLE_MANAGER" in user.roles %}selected{% endif %}>ROLE_MANAGER</option>
+                    <option value="ROLE_ADMIN" {% if "ROLE_ADMIN" in user.roles %}selected{% endif %}>ROLE_ADMIN</option>
+                    <option value="ROLE_SUPER_ADMIN" {% if "ROLE_SUPER_ADMIN" in user.roles %}selected{% endif %}>ROLE_SUPER_ADMIN</option>
+                </select>
+
+                <input type="submit" class="btn btn-primary" value="Editer">
+            </form>
+        </div>
+
+
+
+
+
+        <style>
+            .error-do-not-exist{
+                display: none;
+                color: red;
+                margin-top: 5px;
+            }
+        </style>
+
+    </div>
+{%  endblock %}

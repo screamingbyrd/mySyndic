@@ -117,39 +117,62 @@ class AdminController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $user->removeRole('ROLE_ADMIN');
-
-        $em->merge($user);
+        $em->remove($user);
         $em->flush();
 
         return $this->redirectToRoute('list_admin');
     }
 
-    public function promoteToAdminAction(Request $request)
+    public function addAdminAction(Request $request)
     {
-        $mail = $request->get('mail');
-
+        $session = $request->getSession();
         $user = $this->getUser();
+        $mail = $request->get('mail');
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $role = $request->get('role');
 
-        if(!(isset($user) and in_array('ROLE_ADMIN', $user->getRoles()))){
-            return $this->redirectToRoute('jobnow_home');
+        if(!(isset($user) and (in_array('ROLE_ADMIN', $user->getRoles()) or in_array('ROLE_SUPER_ADMIN', $user->getRoles())))){
+            $translated = $this->get('translator')->trans('redirect.candidate');
+            $session->getFlashBag()->add('danger', $translated);
+            return $this->redirectToRoute('mysyndic_home');
         }
 
-        $userRepository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:User')
-        ;
-        $user = $userRepository->findOneBy(array('username' => $mail));
+        $userRegister = $this->get('app.user_register');
 
-        $em = $this->getDoctrine()->getManager();
-
-        $user->addRole('ROLE_ADMIN');
-
-        $em->merge($user);
-        $em->flush();
+        $userRegister->register($mail,$username,$password, $role);
 
         return $this->redirectToRoute('list_admin');
+    }
+
+    public function editAdminAction(Request $request){
+        $session = $request->getSession();
+        $user = $this->getUser();
+        $mail = $request->get('mail');
+        $username = $request->get('username');
+        $newMail = $request->get('newMail');
+        $password = $request->get('password');
+        $role = $request->get('role');
+
+        if(!(isset($user) and (in_array('ROLE_ADMIN', $user->getRoles()) or in_array('ROLE_SUPER_ADMIN', $user->getRoles())))){
+            $translated = $this->get('translator')->trans('redirect.candidate');
+            $session->getFlashBag()->add('danger', $translated);
+            return $this->redirectToRoute('mysyndic_home');
+        }
+
+        $userRegister = $this->get('app.user_register');
+
+        $user = $userRegister->getUser($mail);
+
+        if ($request->isMethod('POST')){
+            $userRegister->edit($mail, $newMail,$username,$password, $role);
+
+            return $this->redirectToRoute('list_admin');
+        }
+
+        return $this->render('AdminBundle::editAdmin.html.twig', array(
+            'user' => $user
+        ));
     }
 
     public function listOfferAction(Request $request){

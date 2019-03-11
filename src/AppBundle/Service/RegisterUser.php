@@ -29,7 +29,7 @@ class RegisterUser
      *
      * @return User
      **/
-    public function register($email,$username,$password,$firstName,$lastName,$role){
+    public function register($email,$username,$password,$role){
 
         $email_exist = $this->userManager->findUserByEmail($email);
 
@@ -42,51 +42,60 @@ class RegisterUser
         $user->setUsername($username);
         $user->setEmail($email);
         $user->setEmailCanonical($email);
-        $user->setFirstName($firstName);
-        $user->SetLastName($lastName);
         $user->setPlainPassword($password);
         $user->addRole($role);
 
-        if($role == 'ROLE_EMPLOYER'){
-            $user->setMain(1);
-        }
-
         $this->userManager->updateUser($user);
 
-        $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken($user, $password, "main", array($role));
-        $this->tokenStorage->setToken($token);
-
-        $this->session->set('_security_secured_area', serialize($token));
 
         return $user;
     }
 
     /**
-     * This method adds a collaborator to an existing owner.
+     * This method registers an user in the database manually.
      *
      * @return User
      **/
-    public function addCollaborator($email, $owner){
+    public function edit($oldEmail, $email,$username,$password,$role){
 
-        $email_exist = $this->userManager->findUserByEmail($email);
+        $user = $this->userManager->findUserByEmail($oldEmail);
 
-        if($email_exist){
+        if(!isset($user)){
             return false;
         }
 
-        $user = $this->userManager->createUser();
-        $user->setEnabled(true);
-        $user->setUsername($email);
+        $user->setUsername($username);
         $user->setEmail($email);
         $user->setEmailCanonical($email);
-        $user->setFirstName('');
-        $user->SetLastName('');
-        $user->setPlainPassword('0000');
-        $user->addRole('ROLE_EMPLOYER');
-        $user->setOwner($owner);
+
+        if($password != ''){
+            $user->setPlainPassword($password);
+        }
+
+        $roleArray = $user->getRoles();
+
+        foreach ($roleArray as $oldRole){
+            if($oldRole != 'ROLE_USER'){
+                $user->removeRole($oldRole);
+            }
+        }
+
+        $user->addRole($role);
+
         $this->userManager->updateUser($user);
 
+        return $user;
+    }
 
+
+    /**
+     * This method registers an user in the database manually.
+     *
+     * @return User
+     **/
+    public function getUser($email){
+
+        $user = $this->userManager->findUserByEmail($email);
 
         return $user;
     }
