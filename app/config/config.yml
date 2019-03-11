@@ -2,8 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@EmployerBundle/Resources/config/services.yml" }
-    - { resource: "@CandidateBundle/Resources/config/services.yml" }
+    - { resource: "@OwnerBundle/Resources/config/services.yml" }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -43,68 +42,11 @@ fos_user:
         firewall_name: main
         user_class: AppBundle\Entity\User
         from_email:
-            address: "noreply@jobnow.lu"
-            sender_name: "JobNow"
+            address: "noreply@mysyndic.lu"
+            sender_name: "mySyndic"
         registration:
             form:
                 type: AppBundle\Form\RegistrationType
-
-fos_elastica:
-#    serializer:
-#        serializer: jms_serializer
-
-    clients:
-        default: { host: localhost, port: 9200 }
-    indexes:
-            app:
-                settings:
-                    index:
-                        analysis:
-                            analyzer:
-                                autocomplete_analyzer:
-                                    type: custom
-                                    tokenizer: autocomplete_tokenizer
-                                    filter: [lowercase, asciifolding]
-                                location_tokenizer:
-                                    type: custom
-                                    tokenizer: location_tokenizer
-                                    filter: [lowercase, asciifolding]
-                            tokenizer:
-                                autocomplete_tokenizer:
-                                    type: nGram
-                                    min_gram: 3
-                                    max_gram: 20
-                                location_tokenizer:
-                                    type: nGram
-                                    min_gram: 6
-                                    max_gram: 20
-                types:
-                    offer:
-                        properties:
-                            id: ~
-                            description: ~
-                            title: { type: text, analyzer: autocomplete_analyzer }
-                            updateDate: { type: date }
-                            location: { type: text, analyzer: location_tokenizer }
-                            archived: ~
-                            contractType:
-                              type: object
-                              properties:
-                                name: { type: text }
-                            tag:
-                              type: object
-                              properties:
-                                name: { type: text }
-                            employer:
-                              type: object
-                              properties:
-                                name: { type: text }
-                        persistence:
-                        # the driver can be orm, mongodb or phpcr
-                            driver: orm
-                            model: AppBundle\Entity\Offer
-                            provider: ~
-                            finder: ~
 
 # Twig Configuration
 twig:
@@ -153,10 +95,10 @@ swiftmailer:
 vich_uploader:
     db_driver: orm
     mappings:
-        employer_image:
-            uri_prefix: /images/employer
-            upload_destination: '%kernel.project_dir%/web/uploads/images/employer'
-            namer: app.employer_image
+        owner_image:
+            uri_prefix: /images/owner
+            upload_destination: '%kernel.project_dir%/web/uploads/images/owner'
+            namer: app.owner_image
 
 
 ivory_google_map:

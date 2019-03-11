@@ -7,7 +7,7 @@
 {% block body %}
 
     {%  if (app.user.roles is defined) and ('ROLE_ADMIN' in app.user.roles) %}
-        <a href="{{ path('dashboard_admin') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.employer.return' | trans }}</a>
+        <a href="{{ path('dashboard_admin') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.owner.return' | trans }}</a>
     {% endif %}
     <div class="col-md-1 select-year">
         <select id="log-year" class="col-md-1 col-md-offset-3 form-control">
@@ -20,11 +20,11 @@
         <div class="navbar-dashboard">
             <ul class="nav nav-tabs nav-candidate navbar-dashboard">
                 <li class="active">
-                    <a class="tab-log" data-target="#applied" data-toggle="tab" data-id="offer">{{ 'dashboard.employer.slot.offer'|trans }}</a>
+                    <a class="tab-log" data-target="#applied" data-toggle="tab" data-id="offer">{{ 'dashboard.owner.slot.offer'|trans }}</a>
                 </li>
                 <li><a class="tab-log" data-target="#application" data-toggle="tab" data-id="application">Application</a>
                 </li>
-                <li><a class="tab-log" data-target="#alerts" data-toggle="tab" data-id="employer">{{ 'notification.employer'|trans }}</a>
+                <li><a class="tab-log" data-target="#alerts" data-toggle="tab" data-id="owner">{{ 'notification.owner'|trans }}</a>
                 </li>
                 <li><a class="tab-log" data-target="#favorites" data-toggle="tab" data-id="candidate">{{ 'header.candidates.register'|trans }}</a>
                 </li>
@@ -45,8 +45,8 @@
                 </div>
                 <div class="tab-pane active fade" id="alerts">
                     <div class="shadow-box">
-                        <h2>{{ 'admin.log.nbrEmployer'|trans }}</h2>
-                        <div class="ct-chart ct-employer ct-perfect-fourth" style="height: 500px;"></div>
+                        <h2>{{ 'admin.log.nbrOwner'|trans }}</h2>
+                        <div class="ct-chart ct-owner ct-perfect-fourth" style="height: 500px;"></div>
                         <div class="point-value"></div>
                     </div>
                 </div>
@@ -192,32 +192,14 @@
                             }
                         });}, 500);
                     break;
-                case 'employer':
+                case 'owner':
                     setTimeout(function(){  var data = {
                         labels: ['1', '2', '3', '4', '5','6', '7', '8', '9', '10', '11', '12'],
                         series: [
-                            {{ activeEmployerLog |json_encode|raw}}
+                            {{ activeOwnerLog |json_encode|raw}}
                         ]
                     };
-                        let chart = new Chartist.Line('.ct-employer', data, options);
-                        let addedEvents = false;
-                        chart.on('draw', function() {
-                            if (!addedEvents) {
-                                $('.ct-point').on('mouseover', function() {
-                                    $('.point-value').html('<b>{{'admin.log.selected'|trans }}: </b>' + $(this).attr('ct:value'));
-                                });
-                            }
-                        });
-                    }, 500);
-                    break;
-                case 'candidate':
-                    setTimeout(function(){  var data = {
-                        labels: ['1', '2', '3', '4', '5','6', '7', '8', '9', '10', '11', '12'],
-                        series: [
-                            {{ activeCandidateLog |json_encode|raw}}
-                        ]
-                    };
-                        let chart = new Chartist.Line('.ct-candidate', data, options);
+                        let chart = new Chartist.Line('.ct-owner', data, options);
                         let addedEvents = false;
                         chart.on('draw', function() {
                             if (!addedEvents) {

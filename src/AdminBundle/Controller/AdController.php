@@ -9,8 +9,8 @@
 namespace AdminBundle\Controller;
 
 use AppBundle\Entity\Ad;
-use AppBundle\Entity\Employer;
-use AppBundle\Entity\FeaturedEmployer;
+use AppBundle\Entity\Owner;
+use AppBundle\Entity\FeaturedOwner;
 use AppBundle\Entity\FeaturedOffer;
 use AppBundle\Entity\Slot;
 use AppBundle\Form\AdType;
@@ -52,7 +52,7 @@ class AdController extends Controller
             $em->persist($ad);
             $em->flush();
 
-            $translated = $this->get('translator')->trans('form.registration.successEmployer');
+            $translated = $this->get('translator')->trans('form.registration.successOwner');
             $session->getFlashBag()->add('info', $translated);
 
             return $this->redirectToRoute('list_ad_admin', array('archived' => $_SESSION['archived']));

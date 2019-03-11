@@ -6,24 +6,18 @@
 
 {% block body %}
     {%  if (app.user.roles is defined) and ('ROLE_ADMIN' in app.user.roles) %}
-        <a href="{{ path('dashboard_admin') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.employer.return' | trans }}</a>
+        <a href="{{ path('dashboard_admin') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.owner.return' | trans }}</a>
     {% endif %}
     <div class="container">
         <h2>{{ 'admin.adminList.addAdmin' | trans }}</h2>
         <div class="shadow-box">
-            {{ 'admin.adminList.enter' | trans }}
-            <form method="post" action="{{ path('promote_admin') }}" id="search-offer-homepage">
-                <input type="text" title="message" name="mail" id="add-admin-mail" class="form-control"  style="width: 400px !important; display: inline !important;">
 
-                <input disabled type="submit" class="btn btn-primary" value="{{ 'offer.submit' | trans }}" id="add-admin-submit">
-                <div class="error-do-not-exist">{{ 'admin.adminList.doNotExist' | trans }}</div>
-            </form>
         </div>
 
 
         <h2>{{ 'admin.dashboard.adminList' | trans }}</h2>
 
-        <input type="text" id="myInput" onkeyup="showEmployer()" placeholder="Search for mail.." title="Type in a name" class="search-employer">
+        <input type="text" id="myInput" onkeyup="showOwner()" placeholder="Search for mail.." title="Type in a name" class="search-owner">
 
         <table class="table table-bordered table-striped well">
             <thead>
@@ -38,9 +32,7 @@
             {% for admin in admins %}
                 <tr>
                     <td>
-                        <a href="{{ path('dashboard_employer', { 'id': admin.employer.id }) }}">
-                            {{admin.firstName }} {{ admin.lastName }}
-                        </a>
+                        {{admin.username }}
                     </td>
                     <td class="candidate-mail">{{ admin.email }}</td>
                     <td>
@@ -72,7 +64,7 @@
             </div>
         </div>
         <script>
-            function showEmployer() {
+            function showOwner() {
                 let input, filter, ul, li, a, i;
                 input = document.getElementById("myInput");
                 filter = input.value.toUpperCase();

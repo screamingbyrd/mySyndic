@@ -207,7 +207,7 @@ class OfferType extends AbstractType
 
             ->add('submit',      SubmitType::class, array(
                 'attr' => array(
-                    'class' => 'jobnow-button offer-submit login'
+                    'class' => 'mysyndic-button offer-submit login'
                 )
 
             ))
@@ -230,7 +230,7 @@ class OfferType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_employer';
+        return 'appbundle_owner';
     }
 
 

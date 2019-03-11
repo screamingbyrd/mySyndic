@@ -4,23 +4,11 @@ dashboard_admin:
         fr: "/tableau-de-bord"
     defaults: { _controller: AdminBundle:Admin:index }
 
-list_employer_admin:
+list_owner_admin:
     locales:
-        en: "/employer/list"
-        fr: "/employeur/liste"
-    defaults: { _controller: AdminBundle:Admin:listEmployer }
-
-list_candidate_admin:
-    locales:
-        en: "/candidate/list"
-        fr: "/candidat/liste"
-    defaults: { _controller: AdminBundle:Admin:listCandidate }
-
-add_credit_admin:
-    locales:
-        en: "/add-credit"
-        fr: "/ajouter-credit"
-    defaults: { _controller: AdminBundle:Admin:addCredit }
+        en: "/owner/list"
+        fr: "/proprio/liste"
+    defaults: { _controller: AdminBundle:Admin:listOwner }
 
 list_admin:
     locales:

@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('jobnow_contact') }}" class="form-horizontal clearfix">
+<form method="post" action="{{ path('mysyndic_contact') }}" class="form-horizontal clearfix">
 
     <input type="hidden" value="{{ type }}" name="type" id="type-input">
     <input type="hidden" value="{{ emailTo }}" name="emailTo" id="emailTo-input">
@@ -28,7 +28,7 @@
             </td>
         </tr>
     </table>
-    <input type="submit" class="jobnow-button send-contact" value="{{ 'email.send' | trans }}">
+    <input type="submit" class="mysyndic-button send-contact" value="{{ 'email.send' | trans }}">
 
 </form>
 

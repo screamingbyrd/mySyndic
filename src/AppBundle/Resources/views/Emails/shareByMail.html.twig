@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <style type="text/css">
-    .logo-jobnow{
+    .logo-mysyndic{
         width: 250px;
     }
     .header-mail{
@@ -76,7 +76,7 @@
         -moz-transition: -moz-transform 0.5s cubic-bezier(0.9, 0.26, 0.58, 1) false false;
         -o-transition: -o-transform 0.5s cubic-bezier(0.9, 0.26, 0.58, 1) false false;
     }
-    .background-employer-in-offer-search {
+    .background-owner-in-offer-search {
         min-height: 124px;
         width: 30%;
         position: relative;
@@ -86,7 +86,7 @@
         border-bottom-left-radius: 3px;
         border-top-left-radius: 3px;
     }
-    .background-employer-in-offer-search .layer {
+    .background-owner-in-offer-search .layer {
         border-top-right-radius: 0;
         border-bottom-left-radius: 3px;
     }
@@ -101,7 +101,7 @@
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
     }
-    .logo-employer-in-offer-search {
+    .logo-owner-in-offer-search {
         width: 13%;
         max-width: 73px;
         margin-left: -31px;
@@ -200,7 +200,7 @@
 <div class="container">
     <div class="container-mail">
         <div class="header-mail">
-            <a href="https://jobnow.lu{{ path('jobnow_home') }}"><img  style="width: 190px;" class="logo-jobnow" src="https://jobnow.lu/images/logo_jobnow.png"></a>
+            <a href="https://mysyndic.lu{{ path('mysyndic_home') }}"><img  style="width: 190px;" class="logo-mysyndic" src="https://mysyndic.lu/images/logo_mysyndic.png"></a>
         </div>
 
         <div class="content-mail">
@@ -211,21 +211,21 @@
                         <a class='offer-element' href="{{ path('show_offer', {'id': offer.id, 'url':offer.offerUrl}) }}">
                             {% if offer.image is not null and offer.image.imageName is not null %}
                                 {% set image =  'uploads' ~ vich_uploader_asset(offer.image, 'imageFile', 'AppBundle\\Entity\\Image') %}
-                            {% elseif offer.employer.coverImage.imageName is not null %}
-                                {% set image =  'uploads' ~ vich_uploader_asset(offer.employer.coverImage, 'imageFile', 'AppBundle\\Entity\\Image') %}
-                            {% elseif offer.employer.logo.imageName is not null %}
-                                {% set image =  'uploads' ~ vich_uploader_asset(offer.employer.logo, 'imageFile', 'AppBundle\\Entity\\Image') %}
+                            {% elseif offer.owner.coverImage.imageName is not null %}
+                                {% set image =  'uploads' ~ vich_uploader_asset(offer.owner.coverImage, 'imageFile', 'AppBundle\\Entity\\Image') %}
+                            {% elseif offer.owner.logo.imageName is not null %}
+                                {% set image =  'uploads' ~ vich_uploader_asset(offer.owner.logo, 'imageFile', 'AppBundle\\Entity\\Image') %}
                             {% else %}
                                 {% set image = 'images/default_cover_image6.jpg' %}
                             {% endif %}
-                            <div class="background-employer-in-offer-search" style="background-repeat: no-repeat;background-size: cover;background-image: url('https://jobnow.lu'{{ image }});background-position: center center;">
+                            <div class="background-owner-in-offer-search" style="background-repeat: no-repeat;background-size: cover;background-image: url('https://mysyndic.lu'{{ image }});background-position: center center;">
                                 <div class="layer layer-offer-element animated">
                                 </div>
                             </div>
-                            {% if offer.employer.logo.imageName is not null and offer.employer.coverImage.imageName is not null %}<img class="logo-employer-in-offer-search" src="https://jobnow.lu{{ asset('uploads' ~ vich_uploader_asset(offer.employer.logo, 'imageFile', 'AppBundle\\Entity\\Image')) }}"/>{% endif %}
+                            {% if offer.owner.logo.imageName is not null and offer.owner.coverImage.imageName is not null %}<img class="logo-owner-in-offer-search" src="https://mysyndic.lu{{ asset('uploads' ~ vich_uploader_asset(offer.owner.logo, 'imageFile', 'AppBundle\\Entity\\Image')) }}"/>{% endif %}
                             <div class="offer-search-element">
                                 <div class="offer-element-details">
-                                    <div class="offer-element-name">{{ offer.employer.name }}</div>
+                                    <div class="offer-element-name">{{ offer.owner.name }}</div>
                                     <div class="offer-element-title">{{ offer.title |truncate(20, true)}}</div>
                                     <div><span class="other-element">{{ offer.location }}</span></div>
                                     <div class="offer-element-other"><span class="other-element offer-item-contract item-contract-{{ offer.contractType.name }}">{{ offer.contractType.name | trans }}</span></div>
@@ -243,8 +243,8 @@
 
         <div class="footer-mail">
             <div class="social-netwok-container">
-                <a href="https://www.facebook.com/jobnow.lu/"><img class="logo-facebook" src="https://jobnow.lu/images/logo-facebook.png"></a>
-                <a href="https://www.linkedin.com/company/jobnow-luxembourg/"><img class="logo-linkedin" src="https://jobnow.lu/images/logo-linkedin.png"></a>
+                <a href="https://www.facebook.com/mysyndic.lu/"><img class="logo-facebook" src="https://mysyndic.lu/images/logo-facebook.png"></a>
+                <a href="https://www.linkedin.com/company/mysyndic-luxembourg/"><img class="logo-linkedin" src="https://mysyndic.lu/images/logo-linkedin.png"></a>
             </div>
 
             <div class="other-footer">
@@ -252,7 +252,7 @@
                 {#<div>{{ 'email.footer.consult'| trans({'%link_start%' : '<a href="'~path('privacy_page')~'">', '%link_end%' : '</a>'}) |raw}}</div>#}
             </div>
             <div class="other-footer">
-                © 2018 Jobnow.lu
+                © 2018 Mysyndic.lu
             </div>
             <div class="other-footer">
                 <div class="location"><a href="" style="text-decoration:none;color: white;">228 Route d’Esch</a></div>

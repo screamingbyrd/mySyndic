@@ -7,12 +7,12 @@
 
 {% block body %}
     {%  if (app.user.roles is defined) and ('ROLE_EMPLOYER' in app.user.roles) %}
-        <a href="{{ path('dashboard_employer') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.employer.return' | trans }}</a>
+        <a href="{{ path('dashboard_owner') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.owner.return' | trans }}</a>
     {% endif %}
     <div class="jumbotron homepage-jumbotron">
         <h2>{{ 'contact.us.title' | trans }}</h2>
     </div>
-    <div class="container jobnow-container">
+    <div class="container mysyndic-container">
         <div>
             <h2>{{ 'contact.us.subTitle' | trans }}</h2>
             <h3>{{ 'contact.form' | trans }}</h3>

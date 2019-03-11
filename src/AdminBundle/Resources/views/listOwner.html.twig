@@ -1,0 +1,115 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+   Liste des proprios - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {%  if (app.user.roles is defined) and ('ROLE_ADMIN' in app.user.roles) %}
+        <a href="{{ path('dashboard_admin') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.owner.return' | trans }}</a>
+    {% endif %}
+    <div class="container">
+
+        <h2>{{ 'admin.dashboard.ownerList' | trans }}</h2>
+
+        <input type="text" id="myInput" onkeyup="showOwner()" placeholder="{{ 'admin.enterCompnay'|trans }}" title="Type in a name" class="search-owner">
+
+        <table class="table table-bordered table-striped well">
+            <thead>
+                <tr>
+                    <th>{{ 'form.offer.search.ownerPH' | trans }}</th>
+                    <th>{{ 'form.registration.email' | trans }}</th>
+                    <th>{{ 'owner.credit.title' | trans }}</th>
+                    <th>{{ 'dashboard.action' | trans }}</th>
+                </tr>
+            </thead>
+
+            <tbody id="table-owner">
+                {% for owner in owners %}
+                    <tr>
+                        <td>
+                            <a class="owner-title" href="{{ path('owner_offers', { 'id': owner.owner.id }) }}">
+                                {{ owner.owner.name }}
+                            </a>
+                        </td>
+                        <td>{{ owner.email }}</td>
+
+                        <td>{{ owner.owner.credit }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('edit_owner', { 'id': owner.owner.id }) }}">
+                                {{ 'dashboard.owner.editOffer' | trans }}
+                            </a>
+                            <button class="modal-open btn btn-danger" data-href="{{ path('delete_owner', { 'id': owner.owner.id }) }}">
+                                {{ 'delete' | trans }}
+                            </button>
+                            <a class="btn btn-primary" href="{{ path('jobnow_bills', { 'id': owner.owner.id }) }}">
+                                {{ 'price.bills' | trans }}
+                            </a>
+                            <a href="{{ path('add_credit_admin', {'id':owner.id}) }}" class="btn btn-primary">{{ 'admin.addCredit.title'|trans }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+        <div id="paginator-offer">
+            <a href="{{ path('list_owner_admin', {'row':(page == 1?page:page-1)}) }}">&laquo;</a>
+            {% for i in 1..total %}
+                <a class="offer-page-link {% if i == page %}selected-page{% endif %}" href="{{ path('list_owner_admin', {'row':i}) }}">{{ i }}</a>
+            {% endfor %}
+            <a href="{{ path('list_owner_admin', {'row':(page == total?page:page+1)}) }}">&raquo;</a>
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ 'admin.sureOwner'|trans }}</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" class="btn btn-default" id="modal-btn-yes">{{ 'yes'|trans }}</a>
+                        <button type="button" class="btn btn-primary" id="modal-btn-no">{{ 'no'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function showOwner() {
+                let input, filter, ul, li, a, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                ul = document.getElementById("table-owner");
+                a = ul.getElementsByTagName("tr");
+                for (i = 0; i < a.length; i++) {
+                    a[i].style.display = "none";
+                }
+                for (i = 0; i < a.length; i++) {
+                    let h = a[i].getElementsByClassName("owner-title")[0];
+                    if (h.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        a[i].style.display = "";
+                    } else {
+                        a[i].style.display = "none";
+
+                    }
+                }
+            }
+        </script>
+        <script>
+            $(".modal-open").on("click", function(e){
+                $('#modal-btn-yes').attr("href", $(this).data('href'));
+                $("#mi-modal").modal('show');
+            });
+
+            $("#modal-btn-no").on("click", function(e){
+                e.preventDefault();
+                $("#mi-modal").modal('hide');
+            });
+
+            $("#payment-form_submit").on("click", function(){
+                $("#mi-modal").modal('hide');
+            });
+        </script>
+
+    </div>
+{%  endblock %}

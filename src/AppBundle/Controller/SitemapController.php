@@ -28,50 +28,50 @@ class SitemapController extends Controller
         //AppBundle routing
 
         $urls[] = ['loc' =>
-            'https://jobnow.lu' . $this->get('router')->generate('jobnow_home',array('_locale' => $locale)), 'changefreq' => 'daily', 'priority' => '1.0'
+            'https://mysyndic.lu' . $this->get('router')->generate('mysyndic_home',array('_locale' => $locale)), 'changefreq' => 'daily', 'priority' => '1.0'
         ];
 
         $urls[] = ['loc' =>
-            'https://jobnow.lu' . $this->get('router')->generate('fos_user_security_login',array('_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+            'https://mysyndic.lu' . $this->get('router')->generate('fos_user_security_login',array('_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
         ];
         $urls[] = ['loc' =>
-            'https://jobnow.lu' . $this->get('router')->generate('jobnow_credit',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+            'https://mysyndic.lu' . $this->get('router')->generate('mysyndic_credit',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
         ];
         $urls[] = ['loc' =>
-            'https://jobnow.lu' . $this->get('router')->generate('contact_us_page',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+            'https://mysyndic.lu' . $this->get('router')->generate('contact_us_page',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
         ];
 //        $urls[] = ['loc' =>
-//            'https://jobnow.lu' . $this->get('router')->generate('about_us',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+//            'https://mysyndic.lu' . $this->get('router')->generate('about_us',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
 //        ];
         $urls[] = ['loc' =>
-            'https://jobnow.lu' . $this->get('router')->generate('faq_page',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+            'https://mysyndic.lu' . $this->get('router')->generate('faq_page',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
         ];
 
 //        $urls[] = ['loc' =>
-//            'https://jobnow.lu' . $this->get('router')->generate('privacy_page',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+//            'https://mysyndic.lu' . $this->get('router')->generate('privacy_page',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
 //        ];
 //
 //        $urls[] = ['loc' =>
-//            'https://jobnow.lu' . $this->get('router')->generate('legal_page',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+//            'https://mysyndic.lu' . $this->get('router')->generate('legal_page',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
 //        ];
         
         //CandidateBundle routing
 
         $urls[] = ['loc' =>
-            'https://jobnow.lu' . $this->get('router')->generate('create_candidate',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+            'https://mysyndic.lu' . $this->get('router')->generate('create_candidate',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
         ];
 
-        //EmployerBundle routing
+        //OwnerBundle routing
         $urls[] = ['loc' =>
-            'https://jobnow.lu' . $this->get('router')->generate('create_employer',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
-        ];
-
-        $urls[] = ['loc' =>
-            'https://jobnow.lu' . $this->get('router')->generate('list_employer',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+            'https://mysyndic.lu' . $this->get('router')->generate('create_owner',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
         ];
 
         $urls[] = ['loc' =>
-            'https://jobnow.lu' . $this->get('router')->generate('search_page_offer',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+            'https://mysyndic.lu' . $this->get('router')->generate('list_owner',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
+        ];
+
+        $urls[] = ['loc' =>
+            'https://mysyndic.lu' . $this->get('router')->generate('search_page_offer',array('locale' => $locale, '_locale' => $locale)), 'changefreq' => 'weekly', 'priority' => '1.0'
         ];
 
         // Then, we will find all our articles stored in the database
@@ -86,7 +86,7 @@ class SitemapController extends Controller
         // We loop on them
         foreach ($offers as $offer) {
             $urls[] = ['loc' =>
-                'https://jobnow.lu' . $this->get('router')->generate('show_offer',array('locale' => $locale, '_locale' => $locale, 'id' => $offer->getId(), 'url' => $generateUrlService->generateOfferUrl($offer))), 'changefreq' => 'weekly', 'priority' => '1.0'
+                'https://mysyndic.lu' . $this->get('router')->generate('show_offer',array('locale' => $locale, '_locale' => $locale, 'id' => $offer->getId(), 'url' => $generateUrlService->generateOfferUrl($offer))), 'changefreq' => 'weekly', 'priority' => '1.0'
             ];
         }
 

@@ -36,9 +36,9 @@ class GenerateUrl
 
 
 
-        $offerEmployer = strtr( $offer->getEmployer()->getName(), $unwanted_array );
+        $offerOwner = strtr( $offer->getOwner()->getName(), $unwanted_array );
 
-        $url .= str_replace([' ', '/'], '-', $offerEmployer ) .'/';
+        $url .= str_replace([' ', '/'], '-', $offerOwner ) .'/';
         if(isset($tags) && count($tags)>0){
             foreach ($tags as $tag){
                 $translated = $this->translator->trans($tag->getName());

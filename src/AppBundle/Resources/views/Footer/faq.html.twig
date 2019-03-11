@@ -12,7 +12,7 @@
         <h3>{{ 'faq.subTitle'|trans }}</h3>
     </div>
 
-    <div class="container jobnow-container">
+    <div class="container mysyndic-container">
         <style>
             .accordion {
                 font-size: 20px;
@@ -51,7 +51,7 @@
                 overflow: hidden;
                 transition: max-height 0.2s ease-out;
             }
-            #tab-employer, #tab-candidate{
+            #tab-owner, #tab-candidate{
                 display: none;
             }
             .faq-choice{
@@ -71,19 +71,19 @@
         <div class="shadow-box faq-choice">
             {#<div class="choose-faq">{{('faq.kind')|trans}}</div>#}
             <div>
-                <button onclick="showTab('tab-candidate')" class="jobnow-button faq-button"><i class="fas fa-search"></i>{{ 'header.candidates.register'|trans }}</button>
-                <button onclick="showTab('tab-employer')" class="jobnow-button faq-button"><i class="fas fa-clipboard"></i>{{ 'header.employers.register'|trans }}</button>
+                <button onclick="showTab('tab-candidate')" class="mysyndic-button faq-button"><i class="fas fa-search"></i>{{ 'header.candidates.register'|trans }}</button>
+                <button onclick="showTab('tab-owner')" class="mysyndic-button faq-button"><i class="fas fa-clipboard"></i>{{ 'header.owners.register'|trans }}</button>
             </div>
 
         </div>
 
-        <div id="tab-employer">
-            <div class="shadow-box">{{('faq.employer.intro')|trans}}</div>
+        <div id="tab-owner">
+            <div class="shadow-box">{{('faq.owner.intro')|trans}}</div>
             {% for i in range(1,8) %}
                 <p></p>
-                <button class="accordion">{{('faq.employer.'~i~'.question')|trans}}</button>
+                <button class="accordion">{{('faq.owner.'~i~'.question')|trans}}</button>
                 <div class="panel">
-                    <p>{{('faq.employer.'~i~'.answer')|trans}}</p>
+                    <p>{{('faq.owner.'~i~'.answer')|trans}}</p>
                 </div>
             {% endfor %}
         </div>
@@ -102,7 +102,7 @@
         <script>
             function showTab(id) {
                 let tab = $('#'+id),
-                    otherId = (id == 'tab-employer'?'tab-candidate':'tab-employer'),
+                    otherId = (id == 'tab-owner'?'tab-candidate':'tab-owner'),
                     otherTab = $('#'+otherId);
                 if(tab.is(":visible")){
                     tab.hide();
@@ -133,7 +133,7 @@
     <style>
         .homepage-jumbotron::after{
             content: '';
-            background-image:url({{asset('images/jobnow-home.jpg')}});
+            background-image:url({{asset('images/mysyndic-home.jpg')}});
             background-size: cover;
             background-repeat: no-repeat;
             width: 100%;

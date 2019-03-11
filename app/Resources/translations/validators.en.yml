@@ -7,7 +7,7 @@ candidate:
   minTitle: Title must be longer than {{ limit }} characters.
   maxTitle: Title must be smaller than {{ limit }} characters.
 
-employer:
+owner:
   minName: Company name must be longer than {{ limit }} characters.
   maxName: Company name must be smaller than {{ limit }} characters.
 

@@ -24,72 +24,6 @@ class AppController extends Controller
     public function indexAction(Request $request)
     {
 
-        $featuredEmployerRepository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:FeaturedEmployer')
-        ;
-
-        $featuredEmployer = $featuredEmployerRepository->getCurrentFeaturedEmployer();
-
-        $featuredOfferRepository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:FeaturedOffer')
-        ;
-
-        $featuredOffer = $featuredOfferRepository->getCurrentFeaturedOffer();
-
-        $sql = " 
-        SELECT t.name, count(ot.offer_id) as 'countOffer' FROM `tag` t left join offer_tag ot on ot.tag_id = t.id left join offer o on o.id = ot.offer_id  WHERE o.archived = 0 AND (o.slot_id is not null OR (o.startDate <= NOW() AND o.endDate >= NOW())) GROUP BY NAME
-        ";
-
-        $em = $this->getDoctrine()->getManager();
-        $stmt = $em->getConnection()->prepare($sql);
-        $stmt->execute();
-        $tagArray = $stmt->fetchAll();
-
-        $em = $this->getDoctrine()->getManager();
-
-        $generateUrlService = $this->get('app.offer_generate_url');
-
-        foreach ($featuredOffer as $offer){
-            $now = new \DateTime();
-            $next = new \DateTime();
-            $offer->getOffer()->setOfferUrl($generateUrlService->generateOfferUrl($offer->getOffer()));
-            if($offer->getOffer()->getEndDate() < $now){
-                $offer->getOffer()->setStartDate($now);
-                $offer->getOffer()->setUpdateDate($now);
-
-                $offer->getOffer()->setEndDate($next->modify( '+ 2 month' ));
-
-                $em->merge($offer->getOffer());
-                $em->flush();
-            }
-        }
-
-        $autoComplete = new Autocomplete();
-        $autoComplete->setInputId('place_input');
-
-        $autoComplete->setInputAttributes(array('class' => 'form-control', 'name' => 'location','placeholder' =>  $this->get('translator')->trans('form.offer.search.location')));
-
-        $autoComplete->setTypes(array(AutocompleteType::CITIES));
-        $autoCompleteHelperBuilder = new PlaceAutocompleteHelperBuilder();
-
-        $autoCompleteHelper = $autoCompleteHelperBuilder->build();
-        $apiHelperBuilder = ApiHelperBuilder::create();
-        $apiHelperBuilder->setKey('AIzaSyBY8KoA6XgncXKSfDq7Ue7R2a1QWFSFxjc');
-        $apiHelperBuilder->setLanguage($request->getLocale());
-
-        $apiHelper = $apiHelperBuilder->build();
-
-        $tags = array();
-        foreach ($tagArray as $tag){
-            $tags[] = $tag['name'];
-        }
-
-        shuffle ($featuredEmployer);
-        shuffle ($featuredOffer);
 
         $adRepository = $this
             ->getDoctrine()
@@ -100,12 +34,6 @@ class AppController extends Controller
         shuffle($ads);
 
         return $this->render('AppBundle:Default:index.html.twig', array(
-            'featuredEmployer' => $featuredEmployer,
-            'featuredOffer' => $featuredOffer,
-            'tagArray' => $tagArray,
-            'tags' => $tags,
-            'autoComplete' => $autoCompleteHelper->render($autoComplete),
-            'autoCompleteScript' => $apiHelper->render([$autoComplete]),
             'ads' => $ads,
         ));
 
@@ -198,11 +126,11 @@ class AppController extends Controller
 
         foreach ($arrayNewUser as $mail){
             $message = (new \Swift_Message('Jownow is live !'))
-                ->setFrom('jobnowlu@noreply.lu')
+                ->setFrom('mysyndiclu@noreply.lu')
                 ->setTo($mail)
                 ->setBody(
                     $this->renderView(
-                        'AppBundle:Emails:startJobnow.html.twig',
+                        'AppBundle:Emails:startMysyndic.html.twig',
                         array()
                     ),
                     'text/html'

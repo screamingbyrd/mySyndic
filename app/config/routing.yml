@@ -5,19 +5,12 @@ root:
         path: /%locale%/
         permanent: true
 
-employer:
-    resource: "@EmployerBundle/Resources/config/routing.yml"
+owner:
+    resource: "@OwnerBundle/Resources/config/routing.yml"
     type: "be_simple_i18n"
     prefix:
-         en: "/{_locale}/employer"
-         fr: "/{_locale}/employeur"
-
-candidate:
-    resource: "@CandidateBundle/Resources/config/routing.yml"
-    type: "be_simple_i18n"
-    prefix:
-        en: "/{_locale}/candidate"
-        fr: "/{_locale}/candidat"
+         en: "/{_locale}/owner"
+         fr: "/{_locale}/proprietaire"
 
 admin:
     resource: "@AdminBundle/Resources/config/routing.yml"

@@ -11,7 +11,7 @@
         <h2>{{ 'header.how'|trans }}</h2>
     </div>
 
-    <div class="container jobnow-container">
+    <div class="container mysyndic-container">
         <style>
             .accordion {
                 font-size: 20px;
@@ -56,9 +56,9 @@
 
         <h2>{{ 'how.title'|trans }}</h2>
         <br>
-        <button class="accordion">{{ 'header.employers.title'|trans }}</button>
+        <button class="accordion">{{ 'header.owners.title'|trans }}</button>
         <div class="panel">
-            <p>{{ 'how.employers'|trans }}</p>
+            <p>{{ 'how.owners'|trans }}</p>
         </div>
 
         <button class="accordion">{{ 'header.candidates.title'|trans }}</button>
@@ -87,7 +87,7 @@
     <style>
         .homepage-jumbotron::after{
             content: '';
-            background-image:url({{asset('images/jobnow-home.jpg')}});
+            background-image:url({{asset('images/mysyndic-home.jpg')}});
             background-size: cover;
             background-repeat: no-repeat;
             width: 100%;

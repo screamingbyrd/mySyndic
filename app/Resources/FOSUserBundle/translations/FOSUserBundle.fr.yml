@@ -92,7 +92,7 @@ login:
   subtitle: Connectez-vous pour accéder à toutes les fonctionnalités
   noaccount: Pas encore de compte ? S'inscrire :
   candidate: Candidat
-  employer: Employeur
+  owner: Employeur
   sign: Connectez-vous avec votre compte
   forgotPassword:
     title: Mot de passe oublié ?

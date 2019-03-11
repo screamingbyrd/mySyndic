@@ -110,7 +110,7 @@ class NotificationController extends Controller
         $translated = $this->get('translator')->trans('email.notification.new');
         $message = (new \Swift_Message($translated))
 
-            ->setFrom('jobnowlu@noreply.lu')
+            ->setFrom('mysyndiclu@noreply.lu')
             ->setTo($mail)
             ->setBody(
                 $this->renderView(
@@ -159,7 +159,7 @@ class NotificationController extends Controller
         }else{
             $translated = $this->get('translator')->trans('notification.deleted');
             $session->getFlashBag()->add('info', $translated);
-            return $this->redirectToRoute('jobnow_home');
+            return $this->redirectToRoute('mysyndic_home');
         }
     }
 
@@ -185,10 +185,10 @@ class NotificationController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Candidate')
         ;
-        $employerRepository = $this
+        $ownerRepository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:Employer')
+            ->getRepository('AppBundle:Owner')
         ;
         $tagRepository = $this
             ->getDoctrine()
@@ -205,9 +205,9 @@ class NotificationController extends Controller
                 if(!empty($offers)){
                     $candidate = $candidateRepository->findOneBy(array('id' => $notification->getCandidate()));
 
-                    if($notification->getTypeNotification() == 'notification.employer'){
-                        $employer = $employerRepository->findOneBy(array('id' => $notification->getElementId()));
-                        $subject = $employer->getName();
+                    if($notification->getTypeNotification() == 'notification.owner'){
+                        $owner = $ownerRepository->findOneBy(array('id' => $notification->getElementId()));
+                        $subject = $owner->getName();
                     }elseif ($notification->getTypeNotification() == 'notification.tag'){
                         $tag = $tagRepository->findOneBy(array('id' => $notification->getElementId()));
                         $subject = $tag->getName();
@@ -216,7 +216,7 @@ class NotificationController extends Controller
                     $mailer = $this->container->get('swiftmailer.mailer');
 
                     $message = (new \Swift_Message($this->get('translator')->trans('email.notification.send.title.search')))
-                        ->setFrom('jobnowlu@noreply.lu')
+                        ->setFrom('mysyndiclu@noreply.lu')
                         ->setTo($mail)
                         ->setBody(
                             $this->renderView(
@@ -281,7 +281,7 @@ class NotificationController extends Controller
 
                 $translated = $this->get('translator')->trans('email.notification.send.title.search');
                 $message = (new \Swift_Message($translated))
-                    ->setFrom('jobnowlu@noreply.lu')
+                    ->setFrom('mysyndiclu@noreply.lu')
                     ->setTo($mail)
                     ->setBody(
                         $this->renderView(

@@ -4,17 +4,17 @@
             if (input.files && input.files[0]) {
 
                 if(input.files[0].size > 20971520){
-                    alert({{ 'employer.fileToo'|trans }});
+                    alert({{ 'owner.fileToo'|trans }});
                     this.value = "";
                 }else {
                     var reader = new FileReader();
 
                     reader.onload = function (e) {
-                        $('.employer-jumbotron::after').css('background-image', 'url(' + e.target.result + ')');
+                        $('.owner-jumbotron::after').css('background-image', 'url(' + e.target.result + ')');
 
                         var styleElem = document.head.appendChild(document.createElement("style"));
 
-                        styleElem.innerHTML = ".employer-jumbotron::after {background-image: url(" + e.target.result + ")!important;}";
+                        styleElem.innerHTML = ".owner-jumbotron::after {background-image: url(" + e.target.result + ")!important;}";
                     };
 
                     reader.readAsDataURL(input.files[0]);
@@ -52,7 +52,7 @@
 
         $( document ).ready(function() {
             {% if coverImage is defined and coverImage.imageName is not null %}
-            var input = $('#appbundle_employer_coverImage_imageFile_file');
+            var input = $('#appbundle_owner_coverImage_imageFile_file');
             input.parent().find('.remove-image').attr('data-image-id', {{ coverImage.id }});
             input.parent().css('background-image', 'url({{ asset('uploads' ~ vich_uploader_asset(coverImage, 'imageFile', 'AppBundle\\Entity\\Image')) }})');
             input.parent().find('label').hide();
@@ -61,10 +61,10 @@
         });
     </script>
 
-    <div id="appbundle_employer_coverImage_imageFile">
+    <div id="appbundle_owner_coverImage_imageFile">
         <div class="form-group">
-            <input accept=".png,.jpg" type="file" style="position:absolute; visibility: hidden" onchange="readURL(this);" id="appbundle_employer_coverImage_imageFile_file" name="appbundle_employer[coverImage][imageFile][file]" class="{% if coverImage is defined and coverImage.imageName is not null %}not-empty{% else %}empty{% endif %}">
-            <button  data-toggle="tooltip" data-placement="top" title="{{ 'form.registration.coverImageModify'|trans }}" class="edit-cover" type="button" id="browseButton" value="Choisir un fichier" onclick="appbundle_employer_coverImage_imageFile_file.click()"><i class="fas fa-pencil-alt"></i></button>
+            <input accept=".png,.jpg" type="file" style="position:absolute; visibility: hidden" onchange="readURL(this);" id="appbundle_owner_coverImage_imageFile_file" name="appbundle_owner[coverImage][imageFile][file]" class="{% if coverImage is defined and coverImage.imageName is not null %}not-empty{% else %}empty{% endif %}">
+            <button  data-toggle="tooltip" data-placement="top" title="{{ 'form.registration.coverImageModify'|trans }}" class="edit-cover" type="button" id="browseButton" value="Choisir un fichier" onclick="appbundle_owner_coverImage_imageFile_file.click()"><i class="fas fa-pencil-alt"></i></button>
         </div>
     </div>
 

@@ -27,7 +27,7 @@ class Image
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="employer_image", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="owner_image", fileNameProperty="imageName")
      *
      * @var File
      */

@@ -24,43 +24,23 @@ class AdminController extends Controller
             return $this->redirectToRoute('jobnow_home');
         }
 
-        $employerRepository = $this
+        $ownerRepository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:Employer')
+            ->getRepository('AppBundle:Owner')
         ;
-        $employerCount = $employerRepository->countTotalDifferentEmployer();
+        $ownerArray = $ownerRepository->findAll();
 
-        $candidateRepository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Candidate')
-        ;
-        $candidateCount = count($candidateRepository->findAll());
+        $ownerCount = count($ownerArray);
 
-        $offerRepository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Offer')
-        ;
-        $totalActiveOffer = $offerRepository->countTotalActiveOffer();
 
-        $slotRepository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Slot')
-        ;
-        $totalSLot = $slotRepository->countTotalActiveSlot();
 
         return $this->render('AdminBundle::index.html.twig',array(
-            'totalActiveOffer' => $totalActiveOffer,
-            'countEmployer' => $employerCount,
-            'candidateCount' => $candidateCount,
-            'totalSLot' => $totalSLot
+            'countOwner' => $ownerCount,
         ));
     }
 
-    public function listEmployerAction(Request $request){
+    public function listOwnerAction(Request $request){
 
         $currentPage = $request->get('row');
         $sort = $request->get('sort');
@@ -78,67 +58,25 @@ class AdminController extends Controller
         $repository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:User')
+            ->getRepository('AppBundle:Owner')
         ;
-        $users = $repository->findAll();
+        $owners = $repository->findAll();
 
-        $employers = [];
-        foreach($users as $user)
-        {
-            if($user->getEmployer() != NULL)
-            {
-                $employers[] = $user;
-            }
-        }
 
-        $countResult = count($employers);
+        $countResult = count($owners);
 
-        $finalArray = array_slice($employers, ($currentPage - 1 ) * $numberOfItem, $numberOfItem);
+        $finalArray = array_slice($owners, ($currentPage - 1 ) * $numberOfItem, $numberOfItem);
 
         $totalPage = ceil ($countResult / $numberOfItem);
 
-        return $this->render('AdminBundle::listEmployer.html.twig', array(
-            'employers' => $finalArray,
+        return $this->render('AdminBundle::listOwner.html.twig', array(
+            'owners' => $finalArray,
             'page' => $currentPage,
             'total' => $totalPage,
             'sort' => $sort,
         ));
     }
 
-    public function listCandidateAction(Request$request){
-        $currentPage = $request->get('row');
-        $sort = $request->get('sort');
-        $currentPage = isset($currentPage)?$currentPage:1;
-        $sort = isset($sort)?$sort:'DESC';
-
-        $numberOfItem = 20;
-
-        $user = $this->getUser();
-
-        if(!(isset($user) and in_array('ROLE_ADMIN', $user->getRoles()))){
-            return $this->redirectToRoute('jobnow_home');
-        }
-
-        $candidateRepository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Candidate')
-        ;
-        $candidates = $candidateRepository->findAll();
-
-        $countResult = count($candidates);
-
-        $finalArray = array_slice($candidates, ($currentPage - 1 ) * $numberOfItem, $numberOfItem);
-
-        $totalPage = ceil ($countResult / $numberOfItem);
-
-        return $this->render('AdminBundle::listCandidate.html.twig', array(
-            'candidates' => $finalArray,
-            'page' => $currentPage,
-            'total' => $totalPage,
-            'sort' => $sort,
-        ));
-    }
 
     public function listAdminAction(){
 
@@ -297,11 +235,11 @@ class AdminController extends Controller
             ->getManager()
             ->getRepository('AppBundle:User')
         ;
-        $users = $userRepository->findBy(array('employer' => $offer->getEmployer()));
+        $users = $userRepository->findBy(array('owner' => $offer->getOwner()));
         $arrayEmail = array();
 
-        foreach ($users as $employerUser){
-            $arrayEmail[] = $employerUser->getEmail();
+        foreach ($users as $ownerUser){
+            $arrayEmail[] = $ownerUser->getEmail();
         }
 
         if(is_array($arrayEmail) && !$status){
@@ -349,15 +287,11 @@ class AdminController extends Controller
             ->getManager()
             ->getRepository('AppBundle:ActiveLog');
 
-        $employerRepository = $this
+        $ownerRepository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:Employer');
+            ->getRepository('AppBundle:Owner');
 
-        $candidateRepository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Candidate');
 
         $logCreditRepository = $this
             ->getDoctrine()
@@ -370,8 +304,7 @@ class AdminController extends Controller
             ->getRepository('AppBundle:PostulatedOffers');
 
         $finalActiveLog = array();
-        $finalCandidateLog = array();
-        $finalEmployerLog = array();
+        $finalOwnerLog = array();
         $finalCreditLog = array();
         $monthlyCreditLog = array();
         $finalPriceLog = array();
@@ -387,10 +320,9 @@ class AdminController extends Controller
             $endDate= new \DateTime();
             $endDate->setDate($year, $i, $lastDay);
             $finalActiveLog[] = (int)$logRepository->countActiveBetween($startDate,$endDate)[0]['total'];
-            $finalCandidateLog[] = (int)$candidateRepository->countActiveBetween($endDate)[0]['total'];
             $finalApplicationLog[] = (int)$applicationRepository->countTotalBefore($endDate)[0]['total'];
             $monthlyApplicationLog[] = (int)$applicationRepository->countTotalMonthly($i, $year)[0]['total'];
-            $finalEmployerLog[] =(int)$employerRepository->countActiveBetween($endDate)[0]['total'];
+            $finalOwnerLog[] =(int)$ownerRepository->countActiveBetween($endDate)[0]['total'];
             $finalCreditLog[] =(int)$logCreditRepository->countTotalBefore($endDate)[0]['total'];
             $monthlyCreditLog[] = (int)$logCreditRepository->countTotalMonthly($i, $year)[0]['total'];
             $finalPriceLog[] =(int)$logCreditRepository->countTotalMoneyBefore($endDate)[0]['total'];
@@ -399,8 +331,7 @@ class AdminController extends Controller
 
         return $this->render('AdminBundle::logPage.html.twig',array(
             'activeOfferLog' => $finalActiveLog,
-            'activeEmployerLog' => $finalEmployerLog,
-            'activeCandidateLog' => $finalCandidateLog,
+            'activeOwnerLog' => $finalOwnerLog,
             'creditLog' => $finalCreditLog,
             'monthlyCreditLog' => $monthlyCreditLog,
             'finalPriceLog' => $finalPriceLog,
@@ -411,142 +342,5 @@ class AdminController extends Controller
         ));
     }
 
-    public function addCreditAction(Request $request){
-
-        $user = $this->getUser();
-
-        $session = $request->getSession();
-
-        if(!(isset($user) and in_array('ROLE_ADMIN', $user->getRoles()))){
-            return $this->redirectToRoute('jobnow_home');
-        }
-
-        $employerId = $request->get('id');
-
-        $employerRepository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Employer');
-        $employer = $employerRepository->findOneBy(array('id' => $employerId));
-        $vatNumber = $employer->getVatNumber();
-        $countryCode = substr($vatNumber, 0, 2);
-
-        $withVat = $countryCode == 'LU';
-
-        $form = $this->get('form.factory')
-            ->createNamedBuilder('credit-form')
-            ->add('name',      TextType::class, array(
-                'required' => true,
-                'label' => 'dashboard.candidate.name'
-            ))
-            ->add('phone',      TextType::class, array(
-                'required' => true,
-                'label' => 'form.registration.phone'
-            ))
-            ->add('location',      TextType::class, array(
-                'required' => true,
-                'label' => 'offer.location',
-            ))
-            ->add('zipcode',      TextType::class, array(
-                'required' => true,
-                'label' => 'price.payment.zipcode'
-            ))
-            ->add('credits',      IntegerType::class, array(
-                'required' => true,
-                'label' => 'price.credits'
-            ))
-            ->add('price',      IntegerType::class, array(
-                'required' => true,
-                'label' => 'admin.addCredit.price'
-            ))
-            ->add('submit', SubmitType::class, array(
-                'attr' => array(
-                    'class' => 'jobnow-button',
-                )
-            ))
-            ->getForm();
-        if ($request->isMethod('POST')) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-
-                //Logging credit purchase in db
-                $logCredit = new LogCredit();
-                $em = $this->getDoctrine()->getManager();
-
-                $logCredit->setDate(new \DateTime());
-                $logCredit->setCredit($data['credits']);
-                $logCredit->setEmployer($employer);
-                $logCredit->setPrice($data['price']);
-                $logCredit->setName($data['name']);
-                $logCredit->setPhone($data['phone']);
-                $logCredit->setLocation($data['location']);
-                $logCredit->setZipcode($data['zipcode']);
-
-                $employer->setCredit($employer->getCredit() + $data['credits']);
-
-                $em->persist($logCredit);
-                $em->flush();
-
-                $userRepository = $this
-                    ->getDoctrine()
-                    ->getManager()
-                    ->getRepository('AppBundle:User')
-                ;
-                $users = $userRepository->findBy(array('employer' => $employer));
-                $arrayEmail = array();
-
-                foreach ($users as $employerUser){
-                    $arrayEmail[] = $employerUser->getEmail();
-                }
-
-                if(is_array($arrayEmail)) {
-                    $firstUser = $arrayEmail[0];
-                    $html2pdf = new Html2Pdf();
-
-                    $html = $this->renderView('AppBundle:Credit:billsPdf.html.twig', array(
-                        'logCredit' => $logCredit,
-                        'vatNumber' => $logCredit->getEmployer()->getVatNumber(),
-                        'withVat' => $withVat
-                    ));
-
-                    $html2pdf->writeHTML($html);
-                    $pdfContent = $html2pdf->output('facture.pdf', 'S');
-
-                    $mailer = $this->container->get('swiftmailer.mailer');
-                    $translated = $this->get('translator')->trans('admin.addCredit.subject');
-                    $message = (new \Swift_Message($translated))
-                        ->setFrom('jobnowlu@noreply.lu')
-                        ->setTo($firstUser)
-                        ->setCc(array_shift($arrayEmail))
-                        ->setBody(
-                            $this->renderView(
-                                'AppBundle:Emails:creditsAdded.html.twig',
-                                array('credits' => $data['credits'],
-                                )
-                            ),
-                            'text/html'
-                        )
-                        ->attach(\Swift_Attachment::newInstance($pdfContent, 'document.pdf', 'application/pdf'));
-
-                    $message->getHeaders()->addTextHeader(
-                        CssInlinerPlugin::CSS_HEADER_KEY_AUTODETECT
-                    );
-                    $mailer->send($message);
-
-                }
-
-                $translated = $this->get('translator')->trans('price.payment.success', array('%credits%' => $data['credits']));
-                $session->getFlashBag()->add('info', $translated);
-
-                return $this->redirectToRoute('list_employer_admin');
-            }
-        }
-        return $this->render('AdminBundle::addCredit.html.twig', [
-            'form' => $form->createView(),
-            'employer' => $employer,
-            'withVat' => $withVat
-        ]);
-    }
 
 }

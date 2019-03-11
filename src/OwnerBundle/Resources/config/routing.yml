@@ -1,0 +1,45 @@
+create_owner:
+    locales:
+        en: "/register"
+        fr: "/inscription"
+    defaults: { _controller: OwnerBundle:Owner:create }
+edit_owner:
+    locales:
+        en: "/edit"
+        fr: "/editer"
+    defaults: { _controller: OwnerBundle:Owner:edit }
+delete_owner:
+    locales:
+        en: "/delete/{id}"
+        fr: "/supprimer/{id}"
+    defaults: { _controller: OwnerBundle:Owner:delete }
+
+show_owner:
+    locales:
+        en: "/{id}"
+        fr: "/{id}"
+    defaults: { _controller: OwnerBundle:Owner:show }
+    requirements:
+        id: \d+
+list_owner:
+    locales:
+        en: "/list-owner"
+        fr: "/liste-proprio"
+    defaults: { _controller: OwnerBundle:Owner:list }
+dashboard_owner:
+    locales:
+        en: "/dashboard"
+        fr: "/tableaux-de-bord"
+    defaults: { _controller: OwnerBundle:Owner:dashboard}
+owner_offers:
+    locales:
+        en: "/my-offers/{archived}"
+        fr: "/mes-offres/{archived}"
+    defaults: { _controller: OwnerBundle:Owner:myOfferPage , archived: 0}
+    requirements:
+      archived: 0|1
+delete_image:
+    locales:
+        en: "/delete-image"
+        fr: "/effacer-image"
+    defaults: { _controller: OwnerBundle:Owner:deleteImage }

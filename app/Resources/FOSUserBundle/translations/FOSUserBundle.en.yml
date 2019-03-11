@@ -96,7 +96,7 @@ login:
   subtitle: Sign in to enjoy all services
   noaccount: Don't have an account yet? Register as
   candidate: Candidate
-  employer: Employer
+  owner: Employer
   sign: Please sign in
   forgotPassword:
     title: Forgot Password ?

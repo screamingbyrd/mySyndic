@@ -1,0 +1,54 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>{{ 'offer.sorry' | trans }}</h1>
+
+        {% if similarOfferArray[0] is defined %}
+            <h3>{{ 'offer.hereSomeSimilar' | trans }}</h3>
+            <ul id="myUL">
+                {% for offer in similarOfferArray %}
+                    {% if offer.isActive() or offer.slot is not null %}
+
+                        <li class="search-result animated fadeIn">
+                            <a class='offer-element' href="{{ path('show_offer', {'id': offer.id, 'url':offer.offerUrl}) }}">
+                                {% if offer.image is not null and offer.image.imageName is not null %}
+                                    {% set image =  'uploads' ~ vich_uploader_asset(offer.image, 'imageFile', 'AppBundle\\Entity\\Image') %}
+                                {% elseif offer.owner.coverImage.imageName is not null %}
+                                    {% set image =  'uploads' ~ vich_uploader_asset(offer.owner.coverImage, 'imageFile', 'AppBundle\\Entity\\Image') %}
+                                {% elseif offer.owner.logo.imageName is not null %}
+                                    {% set image =  'uploads' ~ vich_uploader_asset(offer.owner.logo, 'imageFile', 'AppBundle\\Entity\\Image') %}
+                                {% else %}
+                                    {% set image = 'images/default_cover_image6.jpg' %}
+                                {% endif %}
+                                <div class="background-owner-in-offer-search" style="background-repeat: no-repeat;background-size: cover;background-image: url({{ asset(image) }});background-position: center center;">
+                                    <div class="layer layer-offer-element animated">
+                                    </div>
+                                </div>
+                                {% if offer.owner.logo.imageName is not null and offer.owner.coverImage.imageName is not null %}<img class="logo-owner-in-offer-search" src="{{asset('uploads' ~ vich_uploader_asset(offer.owner.logo, 'imageFile', 'AppBundle\\Entity\\Image')) }}"/>{% endif %}
+                                <div class="offer-search-element">
+                                    <div class="offer-element-details">
+                                        <div class="offer-element-name">{{ offer.owner.name }}<span class="offer-item-experience other-element"><i class="fa fa-address-book" aria-hidden="true"></i>{{ offer.experience | trans }}</span></div>
+                                        <div class="offer-element-title">{{ offer.title |truncate(80, true)}}</div>
+                                        <div class="offer-element-other">
+                                            <span class="other-element offer-item-contract item-contract-{{ offer.contractType.name }}">{{ offer.contractType.name | trans }}</span>
+                                            <span class="other-element"><i class="fa fa-map-marker"></i>{{ offer.location }}</span>
+                                            <span class="other-element"><i class="fa fa-clock-o"></i>{{ offer.startDate|time_diff }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

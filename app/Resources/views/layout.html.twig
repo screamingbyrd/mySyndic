@@ -88,54 +88,29 @@
         <span class="icon-bar"></span>
     </button>
     <div class="container">
-            <a class="navbar-brand  header-text" href="{{ path('jobnow_home') }}">
+            <a class="navbar-brand  header-text" href="{{ path('mysyndic_home') }}">
                 <img class="logo-jobnow" src="{{asset('images/logo_jobnow.png')}}">
             </a>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle c" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><i class="fas fa-search"></i>{{ 'header.candidates.title'|trans }}<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><i class="fas fa-clipboard"></i>{{ 'header.owners.title'|trans }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('search_page_offer') }}"><i class="fas fa-search-plus"></i>{{ 'header.candidates.findJob'|trans }}</a></li>
-                        <li><a href="{{ path('list_employer') }}"><i class="fas fa-building"></i>{{ 'header.candidates.companies'|trans }}</a></li>
-                        {%  if (app.user.roles is defined) and ('ROLE_CANDIDATE' in app.user.roles) %}
-                            <li><a href="{{ path('dashboard_candidate') }}#applied"><i class="fas fa-clipboard-list"></i>{{ 'header.candidates.dashboard.applied'|trans }}</a></li>
-                            <li><a href="{{ path('dashboard_candidate') }}#alerts"><i class="fas fa-flag"></i>{{ 'header.candidates.dashboard.alert'|trans }}</a></li>
-                            <li><a href="{{ path('dashboard_candidate') }}#favorites"><i class="fas fa-star"></i>{{ 'header.candidates.dashboard.favorites'|trans }}</a></li>
+                        {%  if (app.user.roles is defined) and ('ROLE_OWNER' in app.user.roles) %}
+                            <li><a href="{{ path('dashboard_owner') }}"><i class="fas fa-th-large"></i>{{ 'header.owners.dashboard'|trans }}</a></li>
                         {% endif %}
-                    </ul>
+                     </ul>
                 </li>
-
-                {%  if (app.user.roles is not defined) or (app.user.roles is defined and 'ROLE_CANDIDATE' not in app.user.roles) %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false"><i class="fas fa-clipboard"></i>{{ 'header.employers.title'|trans }}<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            {%  if (app.user.roles is defined) and ('ROLE_EMPLOYER' in app.user.roles) %}
-                                <li><a href="{{ path('dashboard_employer') }}"><i class="fas fa-th-large"></i>{{ 'header.employers.dashboard'|trans }}</a></li>
-                                <li><a href="{{ path('show_employer', {'id':app.user.employer.id}) }}"><i class="fas fa-user"></i>{{ 'dashboard.employer.watchProfile'|trans }}</a></li>
-                            {% endif %}
-                            <li><a href="{{ path('post_offer') }}"><i class="fas fa-edit"></i>{{ 'header.employers.post'|trans }}</a></li>
-                            {%  if (app.user.roles is defined) and ('ROLE_EMPLOYER' in app.user.roles) %}
-                                <li><a href="{{ path('employer_offers') }}"><i class="fas fa-list-ul"></i>{{ 'dashboard.employer.myOffers'|trans }}</a></li>
-                            {% endif %}
-                            {#<li><a href="{{ path('search_candidate') }}">{{ 'header.employers.findCandidate'|trans }}</a></li>#}
-                            <li><a href="{{ path('jobnow_credit') }}"><img class="logo-credit" src="{{asset('images/white-coin.svg')}}"> {{ 'header.employers.pricing'|trans }}</a></li>
-                        </ul>
-                    </li>
-                {% endif %}
 
                 {%  if (app.user.roles is defined and 'ROLE_ADMIN' in app.user.roles) %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false"><i class="fas fa-cogs"></i>{{ 'admin.title'|trans }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('dashboard_admin') }}">{{ 'header.employers.dashboard'|trans }}</a></li>
-                            <li><a href="{{ path('list_offer_admin') }}">{{ 'dashboard.employer.slot.offer'|trans }}</a></li>
-                            <li><a href="{{ path('list_employer_admin') }}">{{ 'header.employers.title'|trans }}</a></li>
-                            <li><a href="{{ path('list_candidate_admin') }}">{{ 'header.candidates.title'|trans }}</a></li>
+                            <li><a href="{{ path('dashboard_admin') }}">{{ 'header.owners.dashboard'|trans }}</a></li>
+                            <li><a href="{{ path('list_owner_admin') }}">{{ 'header.owners.title'|trans }}</a></li>
                             <li><a href="{{ path('list_ad_admin',{'archived':0}) }}">{{ 'admin.dashboard.adList'|trans }}</a></li>
                         </ul>
                     </li>
@@ -147,18 +122,13 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-                    {%  if (app.user.roles is defined) and ('ROLE_EMPLOYER' in app.user.roles) %}
-                        <li class="navbar-brand-header header-text"><div class="credit-total"><a href="{{ path('jobnow_credit') }}"><img class="logo-credit" src="{{asset('images/credit.svg')}}"> {{ app.user.employer.credit  }} </a></div></li>
-                    {% endif %}
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">{{ app.user.username }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{%  if (app.user.roles is defined) and ('ROLE_CANDIDATE' in app.user.roles) %}
-                                            {{ path('edit_candidate') }}
-                                        {% elseif 'ROLE_EMPLOYER' in app.user.roles %}
-                                            {{ path('edit_employer') }}
+                            <li><a href="{%  if (app.user.roles is defined) and ('ROLE_OWNER' in app.user.roles) %}
+                                            {{ path('edit_owner') }}
                                         {% else %}
                                             {{ path('fos_user_profile_edit') }}
                                         {% endif %}">
@@ -168,16 +138,6 @@
                         </ul>
                     </li>
                 {% else %}
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false"><i class="fas fa-user-plus"></i>{{ 'header.register'|trans }}<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ path('create_candidate') }}"><i class="fas fa-search"></i>{{ 'header.candidates.register'|trans }}</a></li>
-                            <li><a href="{{ path('create_employer') }}"><i class="fas fa-clipboard"></i>{{ 'header.employers.register'|trans }}</a></li>
-                        </ul>
-                    </li>
-
                     <li><a id="login" href="{{ path('fos_user_security_login') }}"><i class="fas fa-user-circle"></i>{{ 'header.login.title'|trans }}</a></li>
                 {% endif %}
                 {% if app.request.get('_route') is not null %}
@@ -185,7 +145,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fas fa-globe"></i>{{ app.request.locale }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        {% if 'jobnow_home' in app.request.attributes.get('_route') or 'fos_user_security_login' in app.request.attributes.get('_route') or 'faq_page' in app.request.attributes.get('_route')  %}
+                        {% if 'mysyndic_home' in app.request.attributes.get('_route') or 'fos_user_security_login' in app.request.attributes.get('_route') or 'faq_page' in app.request.attributes.get('_route')  %}
                             <li><a href="{{ path(app.request.get('_route'), { '_locale': 'fr'}) }}">Français</a></li>
                             <li><a href="{{ path(app.request.get('_route'), { '_locale': 'en'}) }}">English</a></li>
                         {% else %}
@@ -210,7 +170,7 @@
 <nav class="navbar navbar-default navbar-bottom navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand header-text" href="{{ path('jobnow_home') }}"> © 2018 JobNow</a>
+            <a class="navbar-brand header-text" href="{{ path('mysyndic_home') }}"> © 2018 JobNow</a>
         </div>
         <div id="navbarfooter" class="navbar-collapse">
             <ul class="nav navbar-nav">

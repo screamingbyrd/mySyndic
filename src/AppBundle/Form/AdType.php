@@ -47,7 +47,7 @@ class AdType extends AbstractType
                     'data-date-format' => 'dd-mm-yyyy']))
             ->add('endDate',      DateType::class, array('required' => false,'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
-                'label' => 'dashboard.employer.slot.endDate',
+                'label' => 'dashboard.owner.slot.endDate',
 
                 'attr' => [
                     'class' => 'form-control input-inline datepicker',
@@ -64,7 +64,7 @@ class AdType extends AbstractType
 
             ->add('submit',      SubmitType::class, array(
                 'attr' => array(
-                    'class' => 'jobnow-button login',
+                    'class' => 'mysyndic-button login',
                 )
             ))
         ;

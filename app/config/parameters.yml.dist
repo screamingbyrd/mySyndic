@@ -1,31 +1,26 @@
-# This file is a "template" of what your parameters.yml file should look like
-# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
-# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_host: localhost
+    database_host: 127.0.0.1
     database_port: null
-    database_name: jobnow
+    database_name: mysyndic
     database_user: root
     database_password: null
-
-    mailer_transport:
-    secret:
+    mailer_transport: smtp
+    mailer_host: smtp.gmail.com
+    mailer_user: christophe.henry@altea.lu
+    mailer_password: altech360$
+    secret: eb77036cafbf2c8c5c950ef4da96c055421a681b
     mailer_encryption: tls
     mailer_auth_mode: login
     mailer_port: 25
-
-    mailer_host: 127.0.0.1
-    mailer_user: ~
-    mailer_password: ~
-
-    # A secret key that's used to generate certain security-related tokens
-    secret: ThisTokenIsNotSoSecretChangeIt
-
-    stripe_public_key: ~
-    stripe_secret_key: ~
+    stripe_public_key: pk_test_LBpN8KfiaiWWwDe07kz2gZ8u
+    stripe_secret_key: sk_test_DSaS0pY1jY4Yuk9uDD82YVk8
     payment:
         currency: EUR
         decimal: true
+        premium_amount: 1
+    hubspot_api_key: 8abf5f90-ea2c-4727-92c0-3e6d12131749
+    mailer_noreply: no-reply@altea.lu
+    mailer_noreply_alias: Furnished.lu Noreply
 
 
 

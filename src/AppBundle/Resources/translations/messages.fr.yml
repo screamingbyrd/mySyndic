@@ -7,7 +7,7 @@ job: Emploi
 
 title:
   home: Emplois, jobs, stages et missions d'intérim au Luxembourg
-  listEmployer: Répertoire des entreprise
+  listOwner: Répertoire des entreprise
 
 homepage:
   title: Trouvez la carrière qui vous correspond
@@ -26,7 +26,7 @@ homepage:
   ourPartners: Nos partenaires
   discount:
     title: 2 crédits offerts !
-    description: Pour toute inscription en tant qu'employeur pendant tout le mois de Septembre vous recevrez 2 crédits pour mettre en ligne vos offres gratuitement, pour un total de quatre mois.
+    description: Pour toute inscription en tant qu'proprio pendant tout le mois de Septembre vous recevrez 2 crédits pour mettre en ligne vos offres gratuitement, pour un total de quatre mois.
 
 searchPage:
   display: Affiche %numberOfItem% sur %countResult% offre(s)
@@ -36,7 +36,7 @@ searchPage:
 
 how:
   title: Une explication est toujours mieux
-  employers: Parce que nous pensons que le recrutement devrait être une tâche facile, nous vous avons simplifié les choses! Notre plateforme est conçue pour vous aider à trouver le candidat idéal au moment idéal. Comment ça marche? Une fois que vous avez créé votre compte et que vous avez publié votre première annonce pour un poste vacant, vous devez simplement vous asseoir, vous détendre et laisser les candidats venir à vous! Alors, comment trouvez-vous votre match parfait? L’offre d’emploi vous permet de choisir des tags pour affiner votre réserve de candidats et d’assurer des candidats correspondant à votre offre d’emploi, ce qui facilitera le choix du candidat approprié.
+  owners: Parce que nous pensons que le recrutement devrait être une tâche facile, nous vous avons simplifié les choses! Notre plateforme est conçue pour vous aider à trouver le candidat idéal au moment idéal. Comment ça marche? Une fois que vous avez créé votre compte et que vous avez publié votre première annonce pour un poste vacant, vous devez simplement vous asseoir, vous détendre et laisser les candidats venir à vous! Alors, comment trouvez-vous votre match parfait? L’offre d’emploi vous permet de choisir des tags pour affiner votre réserve de candidats et d’assurer des candidats correspondant à votre offre d’emploi, ce qui facilitera le choix du candidat approprié.
   candidates: Parce que trouver un nouveau job peut être stressant, nous vous avons simplifié les choses ! Notre plateforme est conçu pour vous aider à trouver le poste idéal au moment idéal. Comment ça marche? Une fois que vous avez créé votre compte et que vous avez complété votre profil, vous n'avez plus qu'à postuler aux offres qui vous correspondent !
 header:
   register: S'inscrire
@@ -55,14 +55,14 @@ header:
       applied: Mes candidatures
       favorites: Mes favoris
     register: Candidat
-  employers:
-    title: Espace Employeur
+  owners:
+    title: Espace Propriétaire
     post: Poster une offre
     edit: Editer une offre
     findCandidate: Trouver un candidat
     pricing: Acheter des crédits
     dashboard: Tableau de bord
-    register: Employeur
+    register: Propriétaire
   about:
     title: A propos de nous
     faq: FAQ
@@ -80,12 +80,12 @@ form:
     title:
       title: Titre
       candidate: S'incrire en tant que candidat
-      employer: S'inscrire en tant qu'employeur
+      owner: S'inscrire en tant qu'proprio
       create: Créer votre compte
       edit: Modifier vos informations
     subTitle:
       candidate: Votre recherche du poste idéal commence ici!
-      employer: Votre recherche pour le candidat parfait commence maintenant!
+      owner: Votre recherche pour le candidat parfait commence maintenant!
     complete: Compléter votre profil
     completed: Profil complété
     already: Vous avez déjà un profil ?
@@ -105,10 +105,10 @@ form:
     description: Description
     license: Permis de conduire
     success: Vous êtes à présent inscrit en temps que recruteur !
-    edited: L'employeur a bien été modifé !
+    edited: L'proprio a bien été modifé !
     editedCandidate: Votre compté à bien été modifié !
     error: Adresse e-mail déjà utilisée, veuillez réessayer !
-    successEmployer: Vous êtes à présent inscrit en temps que recruteur !
+    successOwner: Vous êtes à présent inscrit en temps que recruteur !
     successCandidate: Vous êtes à présent inscrit en temps que candidat !
     error: Adresse e-mail déjà utilisée, veuillez réessayer !
     exp0: -- Indiquez votre expérience --
@@ -198,14 +198,14 @@ form:
       keyword: Mots-clefs
       location: Lieu de travail
       search: Recherche
-      employerPH:  Société
+      ownerPH:  Société
       categoryPH: Catégorie
       empty: Vide
 
 
 dashboard:
   title: Tableau de bord
-  employer:
+  owner:
     slot:
       title: Slot
       use: Les slots vous permettent de mettre en ligne une offre de votre choix, modifiable à volonté, pendant un an.
@@ -341,7 +341,7 @@ offer:
   applied:
     success: Vous avez bien postulé à l'offre %title% !
     candidate: Vous avez postulez à l'offre
-    employer: Un candidat a postulé à cette offre :
+    owner: Un candidat a postulé à cette offre :
 
   carousel:
     activate: Une fois votre offre créée vous pouvez dépenser 1 crédit pour la mettre en ligne pendant 2 mois en cliquant sur Activer/Prolonger.
@@ -355,7 +355,7 @@ candidate:
   tag: Domaines de compétence
   about: A propos de ce candidat
 
-employer:
+owner:
   show:
     title: Présentation de l'entreprise
     lastOffers: Dernières offres
@@ -406,8 +406,8 @@ apprenticeship: Alternance
 featured:
   week: Semaine
   reserved: Réservé
-  employer:
-    title: Employeurs en avant
+  owner:
+    title: Propriétaires en avant
     modal: Êtes-vous sûr de vouloir réserver cette semaine ? Cela vous coûtera %credit% crédits.
     reserve: Réserver
   offer:
@@ -420,7 +420,7 @@ email:
   send: Envoyer
   application:
     candidate:  Vous avez postulé à cette offre :
-    employer:
+    owner:
       applied: Un candidat a postulé à votre offre:
       comment: Commentaire / Lettre de motivation :
       download: Télécharger le CV
@@ -439,14 +439,14 @@ email:
     new: Vous avez créé une alerte email
     created:
       title: Votre alerte email a bien été créée !
-      now: Vous serez désormais prévenu(e) par email dès qu'une nouvelle annonce correspondant à vos critères de recherche est diffusée sur Jobnow.lu.
+      now: Vous serez désormais prévenu(e) par email dès qu'une nouvelle annonce correspondant à vos critères de recherche est diffusée sur Mysyndic.lu.
     send:
       title:
         regular: De nouveaux emplois sont disponibles pour ces %parameter%
         search: De nouveaux emplois sont disponibles pour vous
       new: De nouvelles offres pourraient vous intéresser
   footer:
-    contact: Si vous souhaitez nous contacter, vous pouvez nous envoyer un e-mail à %link_start%contact@jobnow.lu%link_end%
+    contact: Si vous souhaitez nous contacter, vous pouvez nous envoyer un e-mail à %link_start%contact@mysyndic.lu%link_end%
     consult: Consultez notre %link_start%politique de confidentialité%link_end% pour connaître vos droits.
   share:
     title: Un ami a partagé cette offre avec vous
@@ -462,7 +462,7 @@ contact:
     title: Contactez-nous
     subTitle: N'hésitez pas à nous contacter !
     smallTitle: Contact
-    employer: Contacter un conseiller
+    owner: Contacter un conseiller
   location: Notre localisation
   openingHours: Heures d'ouverture:
   monday: Lundi – Vendredi / 9h – 19h (non-stop)
@@ -482,7 +482,7 @@ notification:
   mine: Mes notifications
   already: La notification existe déjà !
   tag: Categorie
-  employer: Employeur
+  owner: Propriétaire
   search: Recherche
   if: Si vous ne souhaitez plus reçevoir cette alert email cliquez
   here: ici
@@ -497,13 +497,13 @@ favorite:
 add: Ajouter
 delete: Supprimer
 
-searchEmployer:
+searchOwner:
   title: Les entreprises luxembourgeoises incontournables
   discover: "Découvrez sans plus attendre les entreprises luxembourgeoises de notre répertoire. Elles n'attendent plus que vous pour enrichir leur équipes. Les entreprises vous choisissent et VOUS les choisissez !"
   type: Chercher une entreprise
 about:
   let: Laissez nous nous présenter
-  text1: Jobnow est une très jeune startup. Notre fondateur, Jean-Charles Weiss, avait déjà une expérience dans le domaine du recrutement et a souhaité proposer aux entreprises et aux candidats une meilleure approche de ce moment stressant. Une approche moins chère et plus moderne. Il a donc créé cette plateforme, dont le concept est unique au Luxembourg.
+  text1: Mysyndic est une très jeune startup. Notre fondateur, Jean-Charles Weiss, avait déjà une expérience dans le domaine du recrutement et a souhaité proposer aux entreprises et aux candidats une meilleure approche de ce moment stressant. Une approche moins chère et plus moderne. Il a donc créé cette plateforme, dont le concept est unique au Luxembourg.
   text2: L'équipe est également composée de deux développeurs dédiés, qui sont à l'origine de la construction, de la conception et de l'exécution du site.
   text3: Enfin, notre équipe dévouée de conseillers est là pour répondre à vos questions et vous guider tout au long du processus d'acquisition de crédits pour vos offres d'emploi.
 
@@ -513,7 +513,7 @@ privacy:
 faq:
   kind: Quelle type d'utilisateur êtes vous ?
   subTitle: Une explication est toujours mieux
-  employer:
+  owner:
     intro: "Nous avons la conviction que le recrutement se doit d’être une tâche facile et nous œuvrons ainsi dans ce but, pour vous rendre les choses aussi simples que possible ! Notre site est conçu dans cette optique ambitieuse : trouver le candidat idéal au moment où vous en avez besoin."
     1:
       question: Comment ça marche ?
@@ -529,19 +529,19 @@ faq:
       answer: Le tableau de bord est pensé et conçu pour vous. Dessus sont regroupées toutes les informations concernant vos candidats favoris, vos offres d’emplois et vos crédits restants. En un seul coup d’œil, vous retrouvez tous les éléments clefs ! Cliquez simplement sur l’une des sections pour découvrir ce qui s’y cache.
     5:
       question: Comment poster une offre ?
-      answer: Allez dans la barre de menu puis dans la rubrique « Employeurs ». A partir de là, cliquez sur « Publier une offre » et remplissez les informations à propos du poste à pourvoir. Vous serez en mesure de prévisualiser votre offre d’emploi avant sa publication et de voir ainsi la mise en page proposée.
+      answer: Allez dans la barre de menu puis dans la rubrique « Propriétaires ». A partir de là, cliquez sur « Publier une offre » et remplissez les informations à propos du poste à pourvoir. Vous serez en mesure de prévisualiser votre offre d’emploi avant sa publication et de voir ainsi la mise en page proposée.
     6:
       question: Quels sont les crédits ?
       answer: "Le principe est le suivant : 1 offre d’emploi = 1 crédit. Les crédits vous permettent donc de publier des offres mais pas seulement ! Ils peuvent être utilisés pour de nombreuses autres fonctionnalités sur notre plateforme."
     7:
       question: Combien valent-ils ?
-      answer: Après inscription dans la section employeur, vous trouvez une section détaillant les tarifs des crédits. Le recrutement coûte cher, c’est un fait tiré de notre propre expérience. C’est pourquoi nous avons décidé de mobiliser nos compétences pour vous proposer une solution alternative à moindre coût. L’acquisition de crédits est en plus agrémentée de jolis bonus !
+      answer: Après inscription dans la section proprio, vous trouvez une section détaillant les tarifs des crédits. Le recrutement coûte cher, c’est un fait tiré de notre propre expérience. C’est pourquoi nous avons décidé de mobiliser nos compétences pour vous proposer une solution alternative à moindre coût. L’acquisition de crédits est en plus agrémentée de jolis bonus !
     8:
       question: Qu'est-ce qu'une offre en avant ?
       answer: Vous souhaitez mettre en valeur une offre d’emploi et ainsi rester en tête du moteur de recherche de notre plateforme ? L’option « offre vedette » est faite pour vous ! Cette dernière vous assure d’avoir une visibilité maximale auprès des candidats potentiels.
     9:
-      question: Qu'est-ce qu'un employeur en avant ?
-      answer: Vous voulez promouvoir votre entreprise ainsi que les nombreux avantages offerts à vos employés ? Devenez Employeur Premium ! Votre entreprise sera mise en avant sur notre page d’accueil, assurant une forte visibilité. Les candidats pourront alors parcourir l’historique et la description de votre entreprise ainsi que vos postes disponibles.
+      question: Qu'est-ce qu'un proprio en avant ?
+      answer: Vous voulez promouvoir votre entreprise ainsi que les nombreux avantages offerts à vos employés ? Devenez Propriétaire Premium ! Votre entreprise sera mise en avant sur notre page d’accueil, assurant une forte visibilité. Les candidats pourront alors parcourir l’historique et la description de votre entreprise ainsi que vos postes disponibles.
     10:
       question: Que sont les slots?
       answer: Ce sont des espaces que vous pouvez louez toute une année et permettant d’afficher toutes vos offres d’emploi.
@@ -561,7 +561,7 @@ faq:
 
 redirect:
   candidate: Veuillez vous inscrire en tant que candidat
-  employer: Veuillez vous inscrire en tant qu'employer
+  owner: Veuillez vous inscrire en tant qu'owner
 
 price:
   credit: Crédit
@@ -605,7 +605,7 @@ bill:
 admin:
   title: Administrateur
   dashboard:
-    employerList: Liste des employeurs
+    ownerList: Liste des proprios
     candidateList: Liste des candidats
     adList: Liste des pubs
     createAd: Créer une pub
@@ -613,7 +613,7 @@ admin:
     offerList: Liste des offres
     adminList: Liste des admins
     totalActiveOffers: Total offre active:
-    totalEmployers: Total employeurs:
+    totalOwners: Total proprios:
     totalCandidates: Total candidats:
     totalSlots: Total slot:
   adminList:
@@ -635,7 +635,7 @@ admin:
   enterCompnay: Entrer un nom de société
   enterTitle: Entrer un titre
   sureCandidate: Êtes-vous sûr de vouloir effacer ce candidat ?
-  sureEmployer: Êtes-vous sûr de vouloir effacer cet employeur ?
+  sureOwner: Êtes-vous sûr de vouloir effacer cet proprio ?
   offerList:
     totalNonVerifiedOffer: Total offres actives non-vérifiée
     nonArchivedOffers: Offres non archivées
@@ -650,7 +650,7 @@ admin:
     whyInvalid: Pourquoi cette offre n'est-elle pas valide ?
   log:
     nbrActive: Nombre d'offres actives
-    nbrEmployer: Nombre d'employeurs
+    nbrOwner: Nombre d'proprios
     nbrCandidate: Nombre de candidats
     total: Total
     monthly: Mensuel

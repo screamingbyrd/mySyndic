@@ -1,6 +1,6 @@
 <?php
 
-namespace AI\JobnowBundle\Tests\Controller;
+namespace AI\MysyndicBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

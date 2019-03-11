@@ -7,7 +7,7 @@ job: Job
 
 title:
   home: Jobs, internship and Apprenticeship in Luxembourg
-  listEmployer: List of companies
+  listOwner: List of companies
 
 homepage:
   title: Find the career you deserve
@@ -18,7 +18,7 @@ homepage:
         text: We help locally implanted companies to find the perfect candidate for them when the time is right while working for the candidates to help them find and get their ideal job in Luxembourg.
       2:
         title: A dedicated team.
-        text: Our recruiting experts work everyday to offer the best customer service and match for both employers and candidates.
+        text: Our recruiting experts work everyday to offer the best customer service and match for both owners and candidates.
       3:
         title: A permanent questioning.
         text: Our brand new website offers a continued development for a better experience every day.
@@ -26,7 +26,7 @@ homepage:
   ourPartners: Our partners
   discount:
     title: 2 credits offered !
-    description: For any registration as an employer during the month of September you will receive 2 credit to put your offers online for free, for four month in total.
+    description: For any registration as an owner during the month of September you will receive 2 credit to put your offers online for free, for four month in total.
 
 searchPage:
   display: Displaying %numberOfItem% of %countResult% Job(s)
@@ -36,7 +36,7 @@ searchPage:
 
 how:
   title: An explanation is always better
-  employers: Because we believe recruiting should be an easy task, we have made things as simple as possible for you! The website is designed to help you find the perfect candidate at the ideal time. How does it work? Once you’ve created your account and you’ve posted your first ad about an open position for your company, you simply have to sit back, relax and let the candidates come to you! So how do you find your perfect match? The job posting allows you to choose tags to refine your pool of candidates and make sure to get candidates that match your job posting, making it easier to choose the right candidate.
+  owners: Because we believe recruiting should be an easy task, we have made things as simple as possible for you! The website is designed to help you find the perfect candidate at the ideal time. How does it work? Once you’ve created your account and you’ve posted your first ad about an open position for your company, you simply have to sit back, relax and let the candidates come to you! So how do you find your perfect match? The job posting allows you to choose tags to refine your pool of candidates and make sure to get candidates that match your job posting, making it easier to choose the right candidate.
   candidates: Because we believe recruiting should be an easy task, we have made things as simple as possible for you! The website is designed to help you find the perfect candidate at the ideal time. How does it work? Once you’ve created your account and you’ve posted your first ad about an open position for your company, you simply have to sit back, relax and let the candidates come to you! So how do you find your perfect match? The job posting allows you to choose tags to refine your pool of candidates and make sure to get candidates that match your job posting, making it easier to choose the right candidate.
 
 
@@ -57,14 +57,14 @@ header:
       applied: My applications
       favorites: My favorites
     register: Candidate
-  employers:
-    title: Employers
+  owners:
+    title: Owners
     post: Post a job
     edit: Edit a job
     findCandidate: Find a candidate
     pricing: Buy credits
     dashboard: Dashborard
-    register: Employer
+    register: Owner
   about:
     title: About us
     faq: FAQ
@@ -82,12 +82,12 @@ form:
     title:
       title: Title
       candidate: Register as a candidate
-      employer: Register as an employer
+      owner: Register as an owner
       create: Create your account
       edit: Edit your informations
     subTitle:
       candidate: Your hunt for the perfect job position starts here!
-      employer: Your lookout for the perfect candidate starts now!
+      owner: Your lookout for the perfect candidate starts now!
     complete: Complete your profile
     completed: Profile completed
     already: Already have a profile?
@@ -106,11 +106,11 @@ form:
     socialMedia: Link social media
     description: Description
     license: Driving Licence(s)
-    success: You are now registered as an employer !
-    edited: The employer has been modified !
+    success: You are now registered as an owner !
+    edited: The owner has been modified !
     editedCandidate: Your account has been modified !
     error: Email already used, try again !
-    successEmployer: You successfully registered as an employer !
+    successOwner: You successfully registered as an owner !
     successCandidate: You successfully registered as a candidate !
     error: Email address already used !
     exp0: -- Your experience --
@@ -201,13 +201,13 @@ form:
       keyword: Keywords
       location: Location
       search: Search
-      employerPH: Select a company
+      ownerPH: Select a company
       categoryPH: Select tag(s)
       empty: empty
 
 dashboard:
   title: Dashboard
-  employer:
+  owner:
     slot:
       title: Slot
       use: These are spaces that you can rent for a whole year to display all your job offers
@@ -339,7 +339,7 @@ offer:
   applied:
     success: You applied to the offer %title% !
     candidate: You applied to the offer
-    employer: A candidate applied to the offer:
+    owner: A candidate applied to the offer:
   countView: Views
   countContact: Applications
 
@@ -356,7 +356,7 @@ candidate:
   about: About this candidate
 
 
-employer:
+owner:
   show:
     title: Presentation of the company
     lastOffers: Last offers
@@ -415,8 +415,8 @@ apprenticeship: Apprenticeship
 featured:
   week: Week
   reserved: Booked
-  employer:
-    title: Featured Employer
+  owner:
+    title: Featured Owner
     modal: Are you sure you want to book this week? This will cost you %credit% credit(s).
     reserve: Book
   offer:
@@ -429,7 +429,7 @@ email:
   send: Send
   application:
     candidate:  You applied to this offer:
-    employer:
+    owner:
       applied: A candidate has applied to your offer:
       comment: Comment/ motivation letter:
       download: Download CV
@@ -448,14 +448,14 @@ email:
     new: You have created an email alert
     created:
       title: Your email alert has been created!
-      now: You will now be notified by email as soon as a new ad matching your search criteria is posted on Jobnow.lu.
+      now: You will now be notified by email as soon as a new ad matching your search criteria is posted on Mysyndic.lu.
     send:
       title:
         regular: New jobs are available for this %parameter%
         search: New jobs are available for you
       new: New offers could interest you
   footer:
-    contact: If you wish to contact us, you can send an email to %link_start%contact@jobnow.lu%link_end%
+    contact: If you wish to contact us, you can send an email to %link_start%contact@mysyndic.lu%link_end%
     consult: Click here %link_start%politique de confidentialité%link_end% to consult your rights.
   share:
     title: A friend shared this with you
@@ -471,7 +471,7 @@ contact:
     title: Contact us
     subTitle: The best way to reach us is to call us
     smallTitle: Contact
-    employer: Contact an advisor
+    owner: Contact an advisor
   location: Our location
   openingHours: Opening hours:
   monday: Monday – Friday / 9am – 7pm (non-stop)
@@ -491,7 +491,7 @@ notification:
   mine: My notifications
   already: Notification already exist !
   tag: Tag
-  employer: Employer
+  owner: Owner
   if: If you  wish to stop receiving this notification click
   here: here
 
@@ -505,13 +505,13 @@ favorite:
 add: Add
 delete: Delete
 
-searchEmployer:
+searchOwner:
   title: Our very own directory of the best companies for hiring
   discover: Discover our very own directory of companies hiring in Luxembourg. Start browsing now!
   type: Search a company
 about:
   let: Let us present ourselves
-  text1: Jobnow is a very young startup. Our founder, Jean-Charles Weiss has had some previous experience in the recruiting field and he has wanted to offer companies and candidates alike a better, cheaper and more modern approach to recruiting. So he created this platform, which designs and concept is unique in Luxembourg.
+  text1: Mysyndic is a very young startup. Our founder, Jean-Charles Weiss has had some previous experience in the recruiting field and he has wanted to offer companies and candidates alike a better, cheaper and more modern approach to recruiting. So he created this platform, which designs and concept is unique in Luxembourg.
   text2: The team is also composed of two very dedicated, even if a bit grouchy full-stack developers that are the fingers behind the website construction, design and execution.
   text3: Finally, our dedicated team of sales advisor are here to answer your questions and guide you through the process of acquiring credits for your job postings.
 
@@ -521,7 +521,7 @@ privacy:
 faq:
   kind: What kind of users are you?
   subTitle: An explanation is always better
-  employer:
+  owner:
     intro: Because we believe recruiting should be an easy task, we have made things as simple as possible for you! The website is designed to help you find the perfect candidate at the ideal time. How does it work? Once you’ve created your account and you’ve posted your first ad about an open position for your company, you simply have to sit back, relax and let the candidates come to you! So how do you find your perfect match? The job posting allows you to choose tags to refine your pool of candidates and make sure to get candidates that match your job posting, making it easier to choose the right candidate.
     1:
       question: How & Why register?
@@ -531,19 +531,19 @@ faq:
       answer: You will find a dashboard thought and designed with your comfort in mind. You will have all the information you need regarding your favorite profiles, your job postings, your invoices and your remaining credits all at once. Simply click on one of the sections to discover what they hide and how they can help you get the perfect candidate.
     3:
       question: How to post an offer?
-      answer: Posting an offer is super easy! Simply click on “post an offer” under Employers in the menu bar and you will be guided to fill out the information regarding the open position. You will be able to preview your job posting before accepting its layout and content and publishing it.
+      answer: Posting an offer is super easy! Simply click on “post an offer” under Owners in the menu bar and you will be guided to fill out the information regarding the open position. You will be able to preview your job posting before accepting its layout and content and publishing it.
     4:
       question: What are credits?
       answer: Each job posting is worth a credit so that you can keep track of your spendings easily. You can also use credits for many other features of our job platform such as featured jobs.
     5:
       question: How much are they worth?
-      answer: Once you have registered yourself as an employer, you’ll find a section detailing the pricing of credits. Our own experience has taught us that recruiting is expensive so we decided to make these credits affordable to you… and they come with bonuses!
+      answer: Once you have registered yourself as an owner, you’ll find a section detailing the pricing of credits. Our own experience has taught us that recruiting is expensive so we decided to make these credits affordable to you… and they come with bonuses!
     6:
       question: What is a featured job?
       answer: If you have a job posting you really want to highlight, you will be using the featured job option. This allows you to remain at the top of the search engine and thus be much more visible to potential candidates.
     7:
-      question: What is a featured employer?
-      answer: Want to promote your company and the many benefits you offer to your employees? That is why we created the featured employer. Your company will be prominently displayed on our home page to offer you the maximum visibility with our candidates. They will be able to browse your company history and description and see any openings you have.
+      question: What is a featured owner?
+      answer: Want to promote your company and the many benefits you offer to your employees? That is why we created the featured owner. Your company will be prominently displayed on our home page to offer you the maximum visibility with our candidates. They will be able to browse your company history and description and see any openings you have.
     8:
       question: What are slots?
       answer: Slots are spaces you can “rent” for a whole year and where you can post any job opening you may have.
@@ -561,7 +561,7 @@ faq:
 
 redirect:
   candidate: Please register as a candidate
-  employer: Please register as an employer
+  owner: Please register as an owner
 
 price:
   credit: Credit
@@ -606,7 +606,7 @@ bill:
 admin:
   title: Administrator
   dashboard:
-    employerList: Employers list
+    ownerList: Owners list
     candidateList: Candidates list
     adList: Ads list
     createAd: Post an ad
@@ -614,7 +614,7 @@ admin:
     offerList: Offers list
     adminList: Admins list
     totalActiveOffers: Total active offers:
-    totalEmployers: Total Employers:
+    totalOwners: Total Owners:
     totalCandidates: Total candidates:
     totalSlots: Total slot:
   adminList:
@@ -636,7 +636,7 @@ admin:
   enterCompnay: Enter a company name
   enterTitle: Enter a title
   sureCandidate: Are you sure that you want to delete this candidate ?
-  sureEmployer: Are you sure you want to delete this employer ?
+  sureOwner: Are you sure you want to delete this owner ?
   offerList:
     totalNonVerifiedOffer: Total activated unverified offers
     nonArchivedOffers: Offer not archived
@@ -651,7 +651,7 @@ admin:
     whyInvalid: Why is this offer is invalid ?
   log:
     nbrActive: Number of active offers
-    nbrEmployer: Number of employers
+    nbrOwner: Number of owners
     nbrCandidate: Number of candidates
     total: Total
     monthly: Monthly

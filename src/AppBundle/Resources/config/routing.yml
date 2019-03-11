@@ -1,7 +1,7 @@
-jobnow_home:
+mysyndic_home:
     path: "/"
     defaults: { _controller: AppBundle:App:index }
-jobnow_contact:
+mysyndic_contact:
     locales:
         en: "/contact"
         fr: "/contacter"
@@ -11,31 +11,7 @@ share_by_mail:
         en: "/share-by-mai"
         fr: "/partager-par-mail"
     defaults: { _controller: AppBundle:Contact:shareByMail }
-jobnow_credit:
-    locales:
-        en: "/employer/credit"
-        fr: "/employeur/credit"
-    defaults: { _controller: AppBundle:Credit:credit }
-jobnow_bills:
-    locales:
-        en: "/employer/bills"
-        fr: "/employeur/facture"
-    defaults: { _controller: AppBundle:Credit:bills }
-jobnow_bills_generate:
-    locales:
-        en: "/employer/bills/pdf"
-        fr: "/employeur/facture/pdf"
-    defaults: { _controller: AppBundle:Credit:generateBill }
-jobnow_estimation_generate:
-    locales:
-        en: "/employer/estimation/pdf"
-        fr: "/employeur/devis/pdf"
-    defaults: { _controller: AppBundle:Credit:generateEstimation }
-jobnow_payment:
-    locales:
-        en: "/employer/payment/{id}"
-        fr: "/employeur/paiement/{id}"
-    defaults: { _controller: AppBundle:Credit:credit }
+
 contact_us_page:
     locales:
         en: "/contact-us-page"
@@ -94,17 +70,7 @@ notification_already_exist:
         en: "/notification-already-exist"
         fr: "/notification-existe-deja"
     defaults: { _controller: AppBundle:Notification:checkNotificationExist }
-create_favorite:
-    locales:
-        en: "/create-favorite"
-        fr: "/creation-favori"
-    defaults: { _controller: AppBundle:Favorite:create }
-delete_favorite:
-    locales:
-        en: "/delete-favorite"
-        fr: "/supprimer-favori"
-    defaults: { _controller: AppBundle:Favorite:delete }
-jobnow_sitemap:
+mysyndic_sitemap:
     path: "/sitemap.xml"
     defaults: { _controller: AppBundle:Sitemap:sitemap }
     requirements: {_format: "xml"}

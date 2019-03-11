@@ -1,0 +1,196 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - {{ 'form.registration.title.owner' | trans }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container register-owner">
+        <div class="col-md-5 shadow-box">
+            <h3 class="title">{{ 'form.registration.title.owner' | trans }}</h3>
+            <div>{{ 'form.registration.subTitle.owner'|trans }}</div>
+            <div>{{ 'form.registration.already'|trans }} <a href="{{ path('fos_user_security_login') }}">{{ 'header.login.title'|trans }}</a></div>
+
+            <hr>
+
+            <h3 class="login-login-title">{{ 'form.registration.title.create'|trans }}</h3>
+
+            {{ form_start(form, {'attr': {'class': 'form-vertical'}}) }}
+
+            {# Les erreurs générales du formulaire. #}
+            {{ form_errors(form) }}
+
+            <div class="row form-group">
+
+                <div class="col-md-12 form-group">
+                    {{ form_label (form.name) }}
+                    {{ form_widget(form.name) }}
+                    {{ form_errors(form.name) }}
+                </div>
+
+                <div class="col-md-6 form-group">
+                    {{ form_label (form.firstName) }}
+                    {{ form_widget(form.firstName) }}
+                    {{ form_errors(form.firstName) }}
+                </div>
+                <div class="col-md-6 form-group">
+                    {{ form_label (form.lastName) }}
+                    {{ form_widget(form.lastName) }}
+                    {{ form_errors(form.lastName) }}
+                </div>
+
+                <div class="col-md-6 form-group">
+                    {{ form_label (form.email) }}
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                    <div class="error-already-exist">{{ 'form.registration.mailAlreadyExist'|trans }}</div>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    {{ form_label (form.phone) }}
+                    {{ form_widget(form.phone) }}
+                    {{ form_errors(form.phone) }}
+                </div>
+
+                <div class="col-md-12 form-group">
+                    {{ form_label (form.vatNumber) }}
+                    {{ form_widget(form.vatNumber) }}
+                    {{ form_errors(form.vatNumber) }}
+                    <div class="error-vat"></div>
+                </div>
+
+                <div class="col-md-12">
+                    <p>{{ 'form.registration.passwordValidation'|trans }}</p>
+                    {{ form_widget(form.password) }}
+                    {{ form_errors(form.password) }}
+                </div>
+                {#<div class="col-md-12 create-owner-terms">#}
+                    {#{{ form_widget(form.terms) }}#}
+                    {#{{ form_errors(form.terms) }}#}
+                {#</div>#}
+            </div>
+
+            <div style="display: none">
+                {{ form_label (form.description) }}
+                {{ form_widget(form.description) }}
+                {{ form_errors(form.description) }}
+
+                {{ form_label (form.tag) }}
+                {{ form_widget(form.tag) }}
+                {{ form_errors(form.tag) }}
+
+                {{ form_label (form.location) }}
+                {{ form_widget(form.location) }}
+                {{ form_errors(form.location) }}
+
+                {{ form_label (form.phone) }}
+                {{ form_widget(form.phone) }}
+                {{ form_errors(form.phone) }}
+
+                {{ form_label (form.logo) }}
+                {{ form_widget(form.logo) }}
+                {{ form_errors(form.logo) }}
+
+                {{ form_label (form.coverImage) }}
+                {{ form_widget(form.coverImage) }}
+                {{ form_errors(form.coverImage) }}
+
+
+            </div>
+
+
+            <div class="col-md-6 col-md-offset-3 create-owner-submit">
+                {{ form_widget(form.submit, { 'label': 'offer.submit' }) }}
+            </div>
+
+
+
+            {# Génération automatique des champs pas encore écrits.
+               Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+               et tous les champs cachés (type « hidden »). #}
+            {{ form_rest(form) }}
+
+            {# Fermeture de la balise <form> du formulaire HTML #}
+            {{ form_end(form) }}
+            {#<div class="col-md-12">#}
+                {#<div style="margin-top: 10px; font-size: 12px;">#}
+                    {#<div>#}
+                        {#{{ 'form.registration.bySubmitting'|trans({'%link_start%' : '<a target="_blank" href="'~path('legal_page')~'">', '%link_end%' : '</a>'}) | raw }}#}
+                    {#</div>#}
+                    {#<div>#}
+                        {#{{ 'form.registration.consult'|trans({'%link_start%' : '<a target="_blank" href="'~path('privacy_page')~'">', '%link_end%' : '</a>'}) | raw }}#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        </div>
+    </div>
+    <style>
+        .error-vat{
+            color: red !important;
+        }
+    </style>
+    <script>
+        $('#appbundle_owner_email').on('blur', function () {
+            let mail = this.value;
+            url = "{{ path('user_already_exist') }}";
+            $.ajax({
+                url: url,
+                data: {mail:mail}
+            }).done(function( data ) {
+                if(data != ''){
+                    $('.error-already-exist').css({'display':'block'});
+                    $("#appbundle_owner_submit").prop("disabled",true);
+                }else{
+                    $('.error-already-exist').css({'display':'none'});
+                    $("#appbundle_owner_submit").prop("disabled",false);
+                }
+
+            });
+        });
+        $('#appbundle_owner_vatNumber').on('blur', function () {
+            let vat = this.value;
+            url = "{{ path('vat_exist') }}";
+            $.ajax({
+                statusCode: {
+                    500: function() {
+                        $('.error-vat').css({'display':'block'});
+                        $('.error-vat').html('{{ 'form.registration.invalidVatFormat'|trans }}');
+                        $("#appbundle_owner_submit").prop("disabled",true);
+                    }
+                },
+                url: url,
+                data: {vat:vat}
+            }).done(function( data ) {
+                if(data==''){
+                    $('.error-vat').css({'display':'block'});
+                    $('.error-vat').html('{{ 'form.registration.invalidVatFormat'|trans }}');
+                    $("#appbundle_owner_submit").prop("disabled",true);
+                }else if(data == 'false'){
+                    $('.error-vat').css({'display':'block'});
+                    $('.error-vat').html('{{ 'form.registration.invalidVat'|trans }}');
+                    $("#appbundle_owner_submit").prop("disabled",true);
+                }else{
+                    $('.error-vat').css({'display':'none'});
+                    $("#appbundle_owner_submit").prop("disabled",false);
+                }
+
+            });
+        });
+        $('#appbundle_owner_email').on('keyup', function () {
+            let mail = this.value;
+            url = "{{ path('user_already_exist') }}";
+            $.ajax({
+                url: url,
+                data: {mail:mail}
+            }).done(function( data ) {
+                if(data == ''){
+                    $('.error-already-exist').css({'display':'none'});
+                    $("#appbundle_candidate_submit").prop("disabled",false);
+                }
+
+            });
+        });
+    </script>
+
+{% endblock %}

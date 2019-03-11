@@ -4,7 +4,7 @@
             if (input.files && input.files[0]) {
 
                 if(input.files[0].size > 20971520){
-                    alert({{ 'employer.fileToo'|trans }});
+                    alert({{ 'owner.fileToo'|trans }});
                     this.value = "";
                 }
 
@@ -44,7 +44,7 @@
 
         $( document ).ready(function() {
             {% if logo is defined and logo.imageName is not null %}
-            var input = $('#appbundle_employer_logo_imageFile_file');
+            var input = $('#appbundle_owner_logo_imageFile_file');
             input.parent().find('.edit-logo').attr('data-image-id', {{ logo.id }});
             input.parent().css('background-image', 'url({{ asset('uploads' ~ vich_uploader_asset(logo, 'imageFile', 'AppBundle\\Entity\\Image')) }})');
             input.parent().find('label').hide();
@@ -54,13 +54,13 @@
 
     </script>
 
-    <div id="appbundle_employer_logo">
+    <div id="appbundle_owner_logo">
         <div class="form-group">
-            <div id="appbundle_employer_logo_imageFile">
+            <div id="appbundle_owner_logo_imageFile">
                 <div class="form-group logo-edit-container">
                     <div class="logo-label ui-state-default col-md-3 col-sm-3">
-                        <input accept=".png,.jpg" type="file" onchange="readURLLogo(this);" id="appbundle_employer_logo_imageFile_file" name="appbundle_employer[logo][imageFile][file]" class="inputfile {% if logo is defined and logo.imageName is not null %}not-empty{% else %}empty{% endif %}">
-                        <label for="appbundle_employer_logo_imageFile_file"><i class="fas fa-download"></i></label>
+                        <input accept=".png,.jpg" type="file" onchange="readURLLogo(this);" id="appbundle_owner_logo_imageFile_file" name="appbundle_owner[logo][imageFile][file]" class="inputfile {% if logo is defined and logo.imageName is not null %}not-empty{% else %}empty{% endif %}">
+                        <label for="appbundle_owner_logo_imageFile_file"><i class="fas fa-download"></i></label>
                         <button type="button" class="edit-logo" onclick="removeImage(this)"><i class="fas fa-pencil-alt"></i></button>
                     </div>
                 </div>
