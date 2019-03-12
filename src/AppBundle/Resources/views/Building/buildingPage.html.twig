@@ -1,7 +1,7 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block title %}
-    Liste des proprios - {{ parent() }}
+    Page building - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -10,46 +10,43 @@
     {% endif %}
     <div class="container">
 
+        <h1>{{ building.name }}</h1>
         <div class="shadow-box">
-            Ajouter un building
-            <form enctype="multipart/form-data" method="post" action="{{ path('add_building') }}" id="search-offer-homepage">
+            Ajouter un appartement
+            <form enctype="multipart/form-data" method="post" action="{{ path('add_flat', {'idBuilding': building.id}) }}" id="search-offer-homepage">
                 Nom: <input type="text" title="message" name="name" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
-                Adresse: <input type="text" title="message" name="location" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
-                Code postale: <input type="text" title="message" name="zipcode" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
-                Ville: <input type="text" title="message" name="city" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
-
+                Surface: <input type="text" title="message" name="surface" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Etage: <input type="text" title="message" name="floor" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
 
                 <input type="submit" class="btn btn-primary" value="Ajouter">
             </form>
         </div>
 
-        <h2>Liste des batiments</h2>
+        <h2>Liste des appartements</h2>
 
-        <input type="text" id="myInput" onkeyup="showOwner()" placeholder="{{ 'admin.enterCompnay'|trans }}" title="Type in a name" class="search-owner">
+        <input type="text" id="myInput" onkeyup="showOwner()" placeholder="Entrer le nom d'un appartement" title="Type in a name" class="search-owner">
 
         <table class="table table-bordered table-striped well">
             <thead>
             <tr>
                 <th>Nom</th>
-                <th>Adresse</th>
-                <th>Code postale</th>
-                <th>Ville</th>
+                <th>Surface</th>
+                <th>Etage</th>
                 <th>{{ 'dashboard.action' | trans }}</th>
             </tr>
             </thead>
 
             <tbody id="table-owner">
-            {% for building in buildings %}
+            {% for flat in flatArray %}
                 <tr>
-                    <td class="building-name"><a href="{{ path('building_page', {'id':building.id}) }}">{{ building.name }}</a></td>
-                    <td>{{ building.location }}</td>
-                    <td>{{ building.zipcode }}</td>
-                    <td>{{ building.city }}</td>
+                    <td class="building-name"><a href="{{ path('building_page', {'id':flat.id}) }}">{{ flat.name }}</a></td>
+                    <td>{{ flat.surface }}</td>
+                    <td>{{ flat.floor }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ path('edit_building', { 'id': building.id }) }}">
+                        <a class="btn btn-primary" href="{{ path('edit_flat', { 'id': flat.id, 'idBuilding':building.id }) }}">
                             {{ 'dashboard.owner.editOffer' | trans }}
                         </a>
-                        <button class="modal-open btn btn-danger" data-href="{{ path('delete_building', { 'id': building.id }) }}">
+                        <button class="modal-open btn btn-danger" data-href="{{ path('delete_flat', { 'id': flat.id, 'idBuilding':building.id }) }}">
                             {{ 'delete' | trans }}
                         </button>
                     </td>
@@ -58,13 +55,6 @@
             </tbody>
 
         </table>
-        <div id="paginator-offer">
-            <a href="{{ path('list_owner_admin', {'row':(page == 1?page:page-1)}) }}">&laquo;</a>
-            {% for i in 1..total %}
-                <a class="offer-page-link {% if i == page %}selected-page{% endif %}" href="{{ path('list_owner_admin', {'row':i}) }}">{{ i }}</a>
-            {% endfor %}
-            <a href="{{ path('list_owner_admin', {'row':(page == total?page:page+1)}) }}">&raquo;</a>
-        </div>
 
         <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
             <div class="modal-dialog modal-sm">

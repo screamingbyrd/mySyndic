@@ -109,3 +109,23 @@ delete_building:
         en: "/delete-building"
         fr: "/effacer-batiment"
     defaults: { _controller: AppBundle:Building:deleteBuilding }
+building_page:
+    locales:
+        en: "/building-page"
+        fr: "/page-batiment"
+    defaults: { _controller: AppBundle:Building:buildingPage }
+add_flat:
+    locales:
+        en: "/add-flat"
+        fr: "/ajouter-appartement"
+    defaults: { _controller: AppBundle:Building:addFlat }
+edit_flat:
+    locales:
+        en: "/edit-flat"
+        fr: "/editer-appartement"
+    defaults: { _controller: AppBundle:Building:editFlat }
+delete_flat:
+    locales:
+        en: "/delete-flat"
+        fr: "/effacer-appartement"
+    defaults: { _controller: AppBundle:Building:deleteFlat }

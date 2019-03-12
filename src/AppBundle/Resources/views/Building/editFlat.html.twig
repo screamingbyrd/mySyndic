@@ -1,0 +1,25 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    Liste des proprios - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {%  if (app.user.roles is defined) and ('ROLE_ADMIN' in app.user.roles) %}
+        <a href="{{ path('dashboard_admin') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.owner.return' | trans }}</a>
+    {% endif %}
+    <div class="container">
+
+        <div class="shadow-box">
+            Editer un appartement
+            <form enctype="multipart/form-data" method="post" action="{{ path('edit_flat', {'id':flat.id, 'idBuilding':idBuilding}) }}" id="search-offer-homepage">
+                Nom: <input type="text" value="{{ flat.name }}" title="message" name="name" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Surface: <input type="text" value="{{ flat.surface }}" title="message" name="surface" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Etage: <input type="text" value="{{ flat.floor }}" title="message" name="floor" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+
+                <input type="submit" class="btn btn-primary" value="Editer">
+            </form>
+        </div>
+
+    </div>
+{%  endblock %}
