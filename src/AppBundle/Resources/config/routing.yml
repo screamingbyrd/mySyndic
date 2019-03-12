@@ -89,3 +89,23 @@ send_start:
         en: "/send-start"
         fr: "/envoyer-mail-debut"
     defaults: { _controller: AppBundle:App:sendStartMail }
+list_building:
+    locales:
+        en: "/list-building"
+        fr: "/liste-batiment"
+    defaults: { _controller: AppBundle:Building:listBuilding }
+add_building:
+    locales:
+        en: "/add-building"
+        fr: "/ajouter-batiment"
+    defaults: { _controller: AppBundle:Building:addBuilding }
+edit_building:
+    locales:
+        en: "/edit-building"
+        fr: "/editer-batiment"
+    defaults: { _controller: AppBundle:Building:editBuilding }
+delete_building:
+    locales:
+        en: "/delete-building"
+        fr: "/effacer-batiment"
+    defaults: { _controller: AppBundle:Building:deleteBuilding }

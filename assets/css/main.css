@@ -168,24 +168,22 @@ body {
 
 
 .header-navbar {
-    background-color: #272f3b;
+    background-color: white;
     border-color: #080808;
     height: 88px;
     font-size: 18px;
+    color: #272f3b;
 }
 .navbar-collapse{
-    background-color: #272f3b;
+    background-color: white;
     border-color: #080808;
+    color: #272f3b;
 }
 
 .navbar-bottom{
     background-color: #272f3b;
     margin-bottom: 0;
     border-radius: 0 !important;
-}
-
-.navbar-default .navbar-nav>li>a{
-    color: #fffbff !important;
 }
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{

@@ -2,6 +2,7 @@
 
 namespace AdminBundle\Controller;
 
+use AppBundle\Entity\Owner;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -10,7 +11,6 @@ use Trt\SwiftCssInlinerBundle\Plugin\CssInlinerPlugin;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use AppBundle\Entity\LogCredit;
 use Spipu\Html2Pdf\Html2Pdf;
 
 class AdminController extends Controller
@@ -77,6 +77,82 @@ class AdminController extends Controller
         ));
     }
 
+    public function addOwnerAction(Request $request)
+    {
+        $session = $request->getSession();
+        $user = $this->getUser();
+        $mail = $request->get('mail');
+        $firstname = $request->get('firstname');
+        $lastname = $request->get('lastname');
+        $phone = $request->get('phone');
+
+        if(!(isset($user) and (in_array('ROLE_ADMIN', $user->getRoles()) or in_array('ROLE_SUPER_ADMIN', $user->getRoles())))){
+            $translated = $this->get('translator')->trans('redirect.candidate');
+            $session->getFlashBag()->add('danger', $translated);
+            return $this->redirectToRoute('mysyndic_home');
+        }
+
+        $userRegister = $this->get('app.user_register');
+
+        $user = $userRegister->register($mail,$mail,'0000', 'ROLE_OWNER');
+
+        $owner = new Owner();
+
+        $owner->setUser($user);
+        $owner->setFirstname($firstname);
+        $owner->setLastname($lastname);
+        $owner->setMail($mail);
+        $owner->setPhone($phone);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($owner);
+        $em->flush();
+
+        return $this->redirectToRoute('list_admin');
+    }
+
+    public function editOwnerAction(Request $request)
+    {
+        $session = $request->getSession();
+        $user = $this->getUser();
+        $id = $request->get('id');
+
+        if(!(isset($user) and (in_array('ROLE_ADMIN', $user->getRoles()) or in_array('ROLE_SUPER_ADMIN', $user->getRoles())))){
+            $translated = $this->get('translator')->trans('redirect.candidate');
+            $session->getFlashBag()->add('danger', $translated);
+            return $this->redirectToRoute('mysyndic_home');
+        }
+
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Owner')
+        ;
+        $owner = $repository->findOneBy(array('id' => $id));
+
+        if ($request->isMethod('POST')){
+            $mail = $request->get('mail');
+            $firstname = $request->get('firstname');
+            $lastname = $request->get('lastname');
+            $phone = $request->get('phone');
+
+            $owner->setUser($user);
+            $owner->setFirstname($firstname);
+            $owner->setLastname($lastname);
+            $owner->setMail($mail);
+            $owner->setPhone($phone);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($owner);
+            $em->flush();
+
+            return $this->redirectToRoute('list_owner_admin');
+        }
+
+        return $this->render('AdminBundle::editOwner.html.twig', array(
+            'owner' => $owner
+        ));
+    }
 
     public function listAdminAction(){
 

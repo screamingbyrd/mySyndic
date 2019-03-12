@@ -1,0 +1,27 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    Liste des proprios - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {%  if (app.user.roles is defined) and ('ROLE_ADMIN' in app.user.roles) %}
+        <a href="{{ path('dashboard_admin') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.owner.return' | trans }}</a>
+    {% endif %}
+    <div class="container">
+
+        <div class="shadow-box">
+            Editer un building
+            <form enctype="multipart/form-data" method="post" action="{{ path('edit_building', {'id':building.id}) }}" id="search-offer-homepage">
+                Nom: <input type="text" value="{{ building.name }}" title="message" name="name" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Adresse: <input type="text" value="{{ building.location }}" title="message" name="location" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Code postale: <input type="text" value="{{ building.zipcode }}" title="message" name="zipcode" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Ville: <input type="text" value="{{ building.city }}" title="message" name="city" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+
+
+                <input type="submit" class="btn btn-primary" value="Editer">
+            </form>
+        </div>
+
+    </div>
+{%  endblock %}

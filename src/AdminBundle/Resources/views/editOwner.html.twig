@@ -1,0 +1,27 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    Liste des proprios - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {%  if (app.user.roles is defined) and ('ROLE_ADMIN' in app.user.roles) %}
+        <a href="{{ path('dashboard_admin') }}" class="btn btn-primary return-to-dashboard">{{ 'dashboard.owner.return' | trans }}</a>
+    {% endif %}
+    <div class="container">
+
+        <div class="shadow-box">
+            Editer un proprio
+            <form enctype="multipart/form-data" method="post" action="{{ path('edit_owner_admin', {'id': owner.id}) }}" id="search-offer-homepage">
+                Mail: <input type="text" value="{{ owner.mail }}" title="message" name="mail" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Prénom: <input type="text" value="{{ owner.firstname }}" title="message" name="firstname" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Nom: <input type="text" value="{{ owner.lastname }}" title="message" name="lastname" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Phone: <input type="text" value="{{ owner.phone }}" title="message" name="phone" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+
+                <input type="submit" class="btn btn-primary" value="Ajouter">
+            </form>
+        </div>
+
+
+    </div>
+{%  endblock %}

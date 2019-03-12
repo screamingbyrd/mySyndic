@@ -9,6 +9,16 @@ list_owner_admin:
         en: "/owner/list"
         fr: "/proprio/liste"
     defaults: { _controller: AdminBundle:Admin:listOwner }
+add_owner_admin:
+    locales:
+        en: "/owner/add"
+        fr: "/proprio/ajouter"
+    defaults: { _controller: AdminBundle:Admin:addOwner }
+edit_owner_admin:
+    locales:
+        en: "/owner/edit"
+        fr: "/proprio/editer"
+    defaults: { _controller: AdminBundle:Admin:editOwner }
 
 list_admin:
     locales:

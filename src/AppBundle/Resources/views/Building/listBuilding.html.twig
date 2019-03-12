@@ -1,7 +1,7 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block title %}
-   Liste des proprios - {{ parent() }}
+    Liste des proprios - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -11,50 +11,50 @@
     <div class="container">
 
         <div class="shadow-box">
-            Ajouter un proprio
-            <form enctype="multipart/form-data" method="post" action="{{ path('add_owner_admin') }}" id="search-offer-homepage">
-                Mail: <input type="text" title="message" name="mail" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
-                Prénom: <input type="text" title="message" name="firstname" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
-                Nom: <input type="text" title="message" name="lastname" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
-                Phone: <input type="text" title="message" name="phone" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+            Ajouter un building
+            <form enctype="multipart/form-data" method="post" action="{{ path('add_building') }}" id="search-offer-homepage">
+                Nom: <input type="text" title="message" name="name" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Adresse: <input type="text" title="message" name="location" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Code postale: <input type="text" title="message" name="zipcode" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
+                Ville: <input type="text" title="message" name="city" id="add-admin-mail" class="form-control"  style="width: 200px !important; display: inline !important;">
 
 
                 <input type="submit" class="btn btn-primary" value="Ajouter">
             </form>
         </div>
 
-        <h2>{{ 'admin.dashboard.ownerList' | trans }}</h2>
+        <h2>Liste des batiments</h2>
 
-        <input type="text" id="myInput" onkeyup="showOwner()" placeholder="Entrer un mail" title="Type in a name" class="search-owner">
+        <input type="text" id="myInput" onkeyup="showOwner()" placeholder="{{ 'admin.enterCompnay'|trans }}" title="Type in a name" class="search-owner">
 
         <table class="table table-bordered table-striped well">
             <thead>
-                <tr>
-                    <th>Mail</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Téléphone</th>
-                    <th>{{ 'dashboard.action' | trans }}</th>
-                </tr>
+            <tr>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Code postale</th>
+                <th>Ville</th>
+                <th>{{ 'dashboard.action' | trans }}</th>
+            </tr>
             </thead>
 
             <tbody id="table-owner">
-                {% for owner in owners %}
-                    <tr>
-                        <td class="owner-title">{{ owner.mail }}</td>
-                        <td>{{ owner.lastname }}</td>
-                        <td>{{ owner.firstname }}</td>
-                        <td>{{ owner.phone }}</td>
-                        <td>
-                            <a class="btn btn-primary" href="{{ path('edit_owner_admin', { 'id': owner.id }) }}">
-                                {{ 'dashboard.owner.editOffer' | trans }}
-                            </a>
-                            <button class="modal-open btn btn-danger" data-href="{{ path('delete_owner', { 'id': owner.id }) }}">
-                                {{ 'delete' | trans }}
-                            </button>
-                          </td>
-                    </tr>
-                {% endfor %}
+            {% for building in buildings %}
+                <tr>
+                    <td class="building-name">{{ building.name }}</td>
+                    <td>{{ building.location }}</td>
+                    <td>{{ building.zipcode }}</td>
+                    <td>{{ building.city }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('edit_building', { 'id': building.id }) }}">
+                            {{ 'dashboard.owner.editOffer' | trans }}
+                        </a>
+                        <button class="modal-open btn btn-danger" data-href="{{ path('delete_building', { 'id': building.id }) }}">
+                            {{ 'delete' | trans }}
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
             </tbody>
 
         </table>
@@ -91,7 +91,7 @@
                     a[i].style.display = "none";
                 }
                 for (i = 0; i < a.length; i++) {
-                    let h = a[i].getElementsByClassName("owner-title")[0];
+                    let h = a[i].getElementsByClassName("building-name")[0];
                     if (h.innerHTML.toUpperCase().indexOf(filter) > -1) {
                         a[i].style.display = "";
                     } else {
