@@ -162,6 +162,63 @@ body {
     }
 }
 
+.btn{
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 40px;
+    color: #fff;
+    outline: 0;
+    position: relative;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-background-clip: padding;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+.btn-primary{
+    position: relative;
+    width: auto;
+    line-height: normal;
+    padding: 10px 30px 10px 30px;
+    height: auto;
+    max-width: initial;
+    margin: 0 auto;
+    display: inline-block;
+    background-color: #36a9e0;
+    border: 5px solid #95d2ef;
+}
+.btn-primary:hover{
+
+    background-color: #3694e0;
+    border: 5px solid #6ec4ec;
+}
+.btn-danger{
+    position: relative;
+    width: auto;
+    line-height: normal;
+    padding: 10px 30px 10px 30px;
+    height: auto;
+    max-width: initial;
+    margin: 0 auto;
+    display: inline-block;
+    background-color: #d9534f;
+    border: 5px solid #ec8784;
+}
+.btn-danger:hover{
+
+    background-color: #d83833;
+    border: 5px solid #d83833d1;
+}
+
 .navbar-toggle{
     margin-top: 26px;
 }
